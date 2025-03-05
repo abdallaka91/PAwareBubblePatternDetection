@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 
     dec_param.Roots_V[n].resize(1U << n, false);
 
-    vector<vector<vector<vector<uint16_t>>>> Cs;
+    vector<vector<vector<vector<float>>>> Cs;
     Cs.resize(n);
 
     for (uint16_t l = 0; l < n; l++)
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
         Cs[l].resize(pow(2, l));
         for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
         {
-            Cs[l][s].assign(nH, vector<uint16_t>(nL,0));
+            Cs[l][s].assign(nH, vector<float>(nL,0));
             uint16_t sz1 = N >> (l + 1U), sz2 = sz1 << 1U;
             dec_param.clusts_CNs[l][s].resize(sz1);
             dec_param.clusts_VNs[l][s].resize(sz1);
