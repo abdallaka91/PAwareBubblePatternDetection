@@ -180,9 +180,11 @@ int main(int argc, char *argv[])
     }
     cout << endl;
     std::ostringstream fname;
-    fname << "/mnt/c/Users/Abdallah Abdallah/Desktop/BubblePattern/"
-          << "N" << code_param.N << "_GF" << code_param.q
-          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << ".txt";
+    // fname << "/mnt/c/Users/Abdallah Abdallah/Desktop/BubblePattern/"
+    //       << "N" << code_param.N << "_GF" << code_param.q
+    //       << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << ".txt";
+    fname << "./BubblesPattern/N" << code_param.N <<  "/bubbles_N" << code_param.N << "_GF" << code_param.q
+    << "_SNR" << std::fixed << std::setprecision(2) << EbN0 <<"_" << dec_param.nH <<"x" << dec_param.nL <<".txt";
 
     std::string filename = fname.str(); // Convert to string
 
