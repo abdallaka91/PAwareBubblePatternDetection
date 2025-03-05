@@ -1,0 +1,3 @@
+/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build/CMakeFiles/Simul.dir
+/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build/CMakeFiles/edit_cache.dir
+/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build/CMakeFiles/rebuild_cache.dir

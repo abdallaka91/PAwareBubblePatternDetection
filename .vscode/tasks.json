@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build simulator",
+        "type": "shell",
+        "command": "cmake --build ${workspaceFolder}/build",
+        "options": {
+          "env": {
+            "PATH": "/usr/bin:$PATH"
+          }
+        },
+        "group": "build",
+        "problemMatcher": [
+          "$gcc"
+        ],
+        "detail": "Generated task for CMake build"
+      },
+      {
+        "type": "cmake",
+        "label": "CMake: clean",
+        "command": "clean",
+        "problemMatcher": [],
+        "detail": "CMake template clean task"
+      },
+      {
+        "type": "cmake",
+        "label": "CMake: build",
+        "command": "build",
+        "targets": [
+          "all"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [],
+        "detail": "CMake template build task"
+      }
+    ]
+  }
+  

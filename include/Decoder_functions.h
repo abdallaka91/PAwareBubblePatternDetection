@@ -23,15 +23,15 @@ namespace PoAwN
                          vector<vector<softdata_t>> &chan_LLR);
 
         void LLR_sort(const vector<vector<softdata_t>> &chan_LLR,
-            const uint16_t nm,
-            vector<decoder_t> &chan_LLR_sorted);
+                      const uint16_t nm,
+                      vector<decoder_t> &chan_LLR_sorted);
 
         void ECN_AEMS_bubble(const decoder_t &theta_1,
                              const decoder_t &phi_1,
                              const decoder_parameters &dec_param,
                              uint16_t coef,
                              const vector<vector<uint16_t>> &ADDDEC,
-                             const vector<vector<uint16_t>> & DIVDECC,
+                             const vector<vector<uint16_t>> &DIVDECC,
                              decoder_t &theta);
 
         void ECN_EMS(const decoder_t &theta_1,
@@ -42,6 +42,14 @@ namespace PoAwN
                      uint16_t q,
                      const uint16_t coef,
                      decoder_t &theta);
+        void ECN_EMS_L(const decoder_t &theta_1,
+                       const decoder_t &phi_1,
+                       const vector<vector<uint16_t>> &ADDDEC,
+                       const vector<vector<uint16_t>> &DIVDEC,
+                       const decoder_parameters &dec_param,
+                       const uint16_t coef,
+                       decoder_t &theta1,
+                       vector<vector<uint16_t>> &Cs1);
 
         void tuples_sorter(const decoder_t &tuples,
                            const uint16_t nm,
@@ -60,11 +68,12 @@ namespace PoAwN
                        decoder_t &phi);
 
         void decode_SC(const decoder_parameters &dec_param,
-                       const vector<vector<uint16_t>> & ADDDEC,
-                       const vector<vector<uint16_t>> & MULDEC,
-                       const vector<vector<uint16_t>> & DIVDEC,
+                       const vector<vector<uint16_t>> &ADDDEC,
+                       const vector<vector<uint16_t>> &MULDEC,
+                       const vector<vector<uint16_t>> &DIVDEC,
                        vector<vector<decoder_t>> &L,
-                       vector<uint16_t> &info_sec_rec);
+                       vector<uint16_t> &info_sec_rec,
+                       vector<vector<vector<vector<uint16_t>>>> &Cs);
 
     } // namespace decoding
 

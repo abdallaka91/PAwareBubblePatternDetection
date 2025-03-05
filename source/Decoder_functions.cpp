@@ -180,6 +180,83 @@ void PoAwN::decoding::ECN_EMS(const decoder_t &theta_1,
     tuples_sorter(bubble, nm, q, theta);
 }
 
+void PoAwN::decoding::ECN_EMS_L(const decoder_t &theta_1,
+                                const decoder_t &phi_1,
+                                const vector<vector<uint16_t>> &ADDDEC,
+                                const vector<vector<uint16_t>> &DIVDEC,
+                                const decoder_parameters &dec_param,
+                                const uint16_t coef,
+                                decoder_t &theta,
+                                vector<vector<uint16_t>> &Cs1)
+{
+    decoder_t phi_1_p = phi_1;
+    bool rel_theta = (theta_1.intrinsic_LLR[dec_param.Zc] > phi_1.intrinsic_LLR[dec_param.Zc]);
+    for (size_t i = 0; i < phi_1.intrinsic_GF.size(); i++)
+        phi_1_p.intrinsic_GF[i] = DIVDEC[phi_1_p.intrinsic_GF[i]][coef];
+
+    vector<uint16_t> a_gf = rel_theta ? theta_1.intrinsic_GF : phi_1_p.intrinsic_GF;
+    vector<softdata_t> a = rel_theta ? theta_1.intrinsic_LLR : phi_1_p.intrinsic_LLR;
+    vector<uint16_t> b_gf = rel_theta ? phi_1_p.intrinsic_GF : theta_1.intrinsic_GF;
+    vector<softdata_t> b = rel_theta ? phi_1_p.intrinsic_LLR : theta_1.intrinsic_LLR;
+
+    uint16_t nH = a_gf.size() < dec_param.nH ? a_gf.size() : dec_param.nH;
+    uint16_t nL = b_gf.size() < dec_param.nL ? b_gf.size() : dec_param.nL;
+
+    decoder_t tuples;
+    tuples.intrinsic_GF.resize(nH * nL);
+    tuples.intrinsic_LLR.resize(nH * nL);
+    vector<vector<uint16_t>> idxs(nH * nL, vector<uint16_t>(2, 0));
+
+    for (size_t i = 0; i < nH; i++)
+        for (size_t j = 0; j < nL; ++j)
+        {
+            idxs[i * nL + j][0] = i;
+            idxs[i * nL + j][1] = j;
+            tuples.intrinsic_GF[i * nL + j] = ADDDEC[a_gf[i]][b_gf[j]];
+            tuples.intrinsic_LLR[i * nL + j] = a[i] + b[j];
+        }
+
+    uint16_t nm = dec_param.nm;
+    uint16_t q = dec_param.q;
+
+    theta.intrinsic_LLR.reserve(nm);
+    theta.intrinsic_GF.reserve(nm);
+    size_t N1 = tuples.intrinsic_GF.size();
+    vector<softdata_t> temp_llr(q, std::numeric_limits<softdata_t>::max());
+    vector<uint16_t> temp_GF(q);
+    iota(temp_GF.begin(), temp_GF.end(), 0);
+
+    vector<vector<uint16_t>> sort_bub_idxs;
+    sort_bub_idxs.reserve(nm);
+    vector<vector<uint16_t>> temp_idxs(q, vector<uint16_t>(2, 0));
+    ;
+
+    for (size_t i = 0; i < N1; i++)
+        if (tuples.intrinsic_LLR[i] < temp_llr[tuples.intrinsic_GF[i]])
+        {
+            temp_llr[tuples.intrinsic_GF[i]] = tuples.intrinsic_LLR[i];
+            temp_idxs[tuples.intrinsic_GF[i]] = idxs[i];
+        }
+
+    vector<int> indices(temp_llr.size());
+    iota(indices.begin(), indices.end(), 0);
+    sort(indices.begin(), indices.end(), [&](int i, int j)
+         { return temp_llr[i] < temp_llr[j]; });
+
+    size_t count = 0;
+
+    for (auto idx = indices.begin(); idx < indices.end(); idx++)
+    {
+        theta.intrinsic_GF.push_back(temp_GF[*idx]);
+        theta.intrinsic_LLR.push_back(temp_llr[*idx]);
+        sort_bub_idxs.push_back({temp_idxs[*idx][0], temp_idxs[*idx][1]});
+        if (++count == nm)
+            break;
+    }
+    for (int i = 0; i < dec_param.nm; i++)
+        Cs1[sort_bub_idxs[i][0]][sort_bub_idxs[i][1]] += 1;
+}
+
 void PoAwN::decoding::LLR_sort(const vector<vector<softdata_t>> &chan_LLR,
                                const uint16_t nm,
                                vector<decoder_t> &chan_LLR_sorted)
@@ -284,11 +361,12 @@ void PoAwN::decoding::VN_update(const decoder_t &theta_1,
 }
 
 void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
-                                const vector<vector<uint16_t>> & ADDDEC,
-                                const vector<vector<uint16_t>> & DIVDEC,
-                                const vector<vector<uint16_t>> & MULDEC,
+                                const vector<vector<uint16_t>> &ADDDEC,
+                                const vector<vector<uint16_t>> &DIVDEC,
+                                const vector<vector<uint16_t>> &MULDEC,
                                 vector<vector<decoder_t>> &L,
-                                vector<uint16_t> &info_sec_rec)
+                                vector<uint16_t> &info_sec_rec,
+                                vector<vector<vector<vector<uint16_t>>>> &Cs)
 {
     vector<vector<bool>> Roots = dec_param.Roots_V;
     uint16_t MxUS = dec_param.MxUS, n = dec_param.n, N = dec_param.N;
@@ -372,8 +450,8 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
                 phi_1 = L[l][Root[t + SZc1]];
                 temp_coef = dec_param.polar_coeff[l][i3];
                 decoder_t theta;
-                ECN_EMS(theta_1, phi_1, ADDDEC, DIVDEC, dec_param.nm, dec_param.q, temp_coef, theta);
-                //ECN_AEMS_bubble(theta_1, phi_1, dec_param, temp_coef, ADDDEC, DIVDEC, theta);
+                ECN_EMS_L(theta_1, phi_1, ADDDEC, DIVDEC, dec_param, temp_coef, theta, Cs[l][s]);
+                // ECN_AEMS_bubble(theta_1, phi_1, dec_param, temp_coef, ADDDEC, DIVDEC, theta);
                 L[l + 1][Root[t]] = theta;
             }
             l = l + 1;
