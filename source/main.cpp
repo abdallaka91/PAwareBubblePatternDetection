@@ -8,6 +8,10 @@
 #include "init.h"
 #include "struct.h"
 #include "tools.h"
+#include "HelperFunc.h"
+#include <fstream>
+#include <iomanip>
+#include <cstring>
 
 using namespace PoAwN::structures;
 using namespace PoAwN::tools;
@@ -49,9 +53,9 @@ int main(int argc, char *argv[])
     offset = stod(argv[12]);
     nopM = nm + 4;
 
-     base_code_t code_param(N, K, n, q, p, frozen_val);
+    base_code_t code_param(N, K, n, q, p, frozen_val);
     code_param.sig_mod = is_bpsk ? "bpsk" : "ccsk";
-    
+
     int gf_rand_SEED = 0;
     float nse_rand_SEED = 1.2544;
     bool repeatable_randgen = 0;
@@ -69,8 +73,7 @@ int main(int argc, char *argv[])
     cout << "Done!" << endl;
     cout << "Simulation starts..." << endl;
 
-     decoder_parameters dec_param(code_param, offset, nm, nL, nH, nb, Zc, nopM);
-
+    decoder_parameters dec_param(code_param, offset, nm, nL, nH, nb, Zc, nopM);
 
     float sigma = sqrt(1.0 / (pow(10, EbN0 / 10.0)));
 
@@ -95,7 +98,7 @@ int main(int argc, char *argv[])
         Cs[l].resize(pow(2, l));
         for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
         {
-            Cs[l][s].assign(nH, vector<float>(nL,0));
+            Cs[l][s].assign(nH, vector<float>(nL, 0));
             uint16_t sz1 = N >> (l + 1U), sz2 = sz1 << 1U;
             dec_param.clusts_CNs[l][s].resize(sz1);
             dec_param.clusts_VNs[l][s].resize(sz1);
@@ -145,7 +148,7 @@ int main(int argc, char *argv[])
 
         RandomBinaryGenerator(code_param, bin_table,
                               repeatable_randgen, gf_rand_SEED, KBIN, KSYMB);
-       
+
         for (int i = 0; i < code_param.K; i++)
             u_symb[code_param.reliab_sequence[i]] = KSYMB[i];
         Encoder(table.ADDDEC, table.MULDEC, code_param.polar_coeff, u_symb, NSYMB);
@@ -172,8 +175,22 @@ int main(int argc, char *argv[])
                 break;
             }
         }
-        if ((i0  % 200 == 0 && i0 > 0))
-            cout << "\rSNR: " << EbN0 << " dB, FER = " << FER << "/" << (float)i0 << " = " << (float)FER / (float)i0  << std::flush;
+        if ((i0 % 200 == 0 && i0 > 0))
+            cout << "\rSNR: " << EbN0 << " dB, FER = " << FER << "/" << (float)i0 << " = " << (float)FER / (float)i0 << std::flush;
     }
     cout << endl;
+    std::ostringstream fname;
+    fname << "/mnt/c/Users/Abdallah Abdallah/Desktop/BubblePattern/"
+          << "N" << code_param.N << "_GF" << code_param.q
+          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << ".txt";
+
+    std::string filename = fname.str(); // Convert to string
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < 1u << i; j++)
+        {
+            appendToFile(fname.str(), Cs[i][j]);
+        }
+    }
 }
