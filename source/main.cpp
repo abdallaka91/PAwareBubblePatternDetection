@@ -194,7 +194,7 @@ int main(int argc, char *argv[])
         }
         for (uint16_t l = 0; l < n; l++)
             for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
-                for (auto &rw : Cs[l][s])
+                for (auto &rw : Bt[l][s])
                     for (auto &elem : rw)
                         elem = 0;
 
