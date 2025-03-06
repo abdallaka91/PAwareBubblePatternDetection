@@ -85,8 +85,8 @@ int main(int argc, char *argv[])
 
     dec_param.Roots_V[n].resize(1U << n, false);
 
-    vector<vector<vector<vector<bool>>>> Bt;
-    vector<vector<vector<vector<float>>>> Cs;
+    vector<vector<vector<vector<uint16_t>>>> Bt;
+    vector<vector<vector<vector<uint64_t>>>> Cs;
     Cs.resize(n);
     Bt.resize(n);
 
@@ -101,8 +101,8 @@ int main(int argc, char *argv[])
         Bt[l].resize(pow(2, l));
         for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
         {
-            Cs[l][s].assign(nH, vector<float>(nL, 0));
-            Bt[l][s].assign(nH, vector<bool>(nL, false));
+            Cs[l][s].assign(nH, vector<uint64_t>(nL, 0));
+            Bt[l][s].assign(nH, vector<uint16_t>(nL, 0));
             uint16_t sz1 = N >> (l + 1U), sz2 = sz1 << 1U;
             dec_param.clusts_CNs[l][s].resize(sz1);
             dec_param.clusts_VNs[l][s].resize(sz1);
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
     vector<vector<uint16_t>> bin_table;
     bin_table = code_param.sig_mod == "bpsk" ? table.BINDEC : CCSK_rotated_codes;
     vector<uint16_t> u_symb(code_param.N, 0);
-    bool succ_dec;
+    bool succ_dec, succ_writing, newsim;
 
     for (int i0 = 1; i0 <= NbMonteCarlo; ++i0)
     {
@@ -185,24 +185,24 @@ int main(int argc, char *argv[])
         if (succ_dec)
         {
             for (uint16_t l = 0; l < n; l++)
+            {
                 for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
                 {
                     for (int j0 = 0; j0 < nH; j0++)
                     {
                         for (int j1 = 0; j1 < nL; j1++)
-                        {
-                            if (Bt[l][s][j0][j1])
-                                Cs[l][s][j0][j1] += 1;
-                        }
+                            Cs[l][s][j0][j1] += Bt[l][s][j0][j1];
                     }
                     for (auto &row : Bt[l][s])
-                        fill(row.begin(), row.end(), false);
+                        fill(row.begin(), row.end(), 0);
                 }
+            }
         }
         if ((i0 % 200 == 0 && i0 > 0))
             cout << "\rSNR: " << EbN0 << " dB, FER = " << FER << "/" << (float)i0 << " = " << (float)FER / (float)i0 << std::flush;
     }
     cout << endl;
+    newsim = true;
     std::ostringstream fname;
     // fname << "/mnt/c/Users/Abdallah Abdallah/Desktop/BubblePattern/"
     //       << "N" << code_param.N << "_GF" << code_param.q
@@ -216,7 +216,10 @@ int main(int argc, char *argv[])
     {
         for (int j = 0; j < 1u << i; j++)
         {
-            appendToFile(fname.str(), Cs[i][j]);
+            succ_writing = appendToFile(fname.str(), Cs[i][j], newsim);
+            newsim = false;
         }
     }
+    if (succ_writing)
+        std::cout << "Bubbles pattern written to: " << filename << std::endl;
 }

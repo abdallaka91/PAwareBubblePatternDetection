@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/Simul",
-            "args": [1000,-8,0,64,64,42,18,18,18,4,2,0.1],
+            "args": [2,-8,0,64,64,42,18,18,18,4,2,0.1],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

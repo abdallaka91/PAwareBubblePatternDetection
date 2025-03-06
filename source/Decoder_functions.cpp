@@ -187,7 +187,7 @@ void PoAwN::decoding::ECN_EMS_L(const decoder_t &theta_1,
                                 const decoder_parameters &dec_param,
                                 const uint16_t coef,
                                 decoder_t &theta,
-                                vector<vector<bool>> &Bt1)
+                                vector<vector<uint16_t>> &Bt1)
 {
     decoder_t phi_1_p = phi_1;
     bool rel_theta = (theta_1.intrinsic_LLR[dec_param.Zc] > phi_1.intrinsic_LLR[dec_param.Zc]);
@@ -254,7 +254,7 @@ void PoAwN::decoding::ECN_EMS_L(const decoder_t &theta_1,
             break;
     }
     for (int i = 0; i < dec_param.nm; i++)
-        Bt1[sort_bub_idxs[i][0]][sort_bub_idxs[i][1]] = true;
+        Bt1[sort_bub_idxs[i][0]][sort_bub_idxs[i][1]] += 1;
 }
 
 void PoAwN::decoding::LLR_sort(const vector<vector<softdata_t>> &chan_LLR,
@@ -366,7 +366,7 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
                                 const vector<vector<uint16_t>> &MULDEC,
                                 vector<vector<decoder_t>> &L,
                                 vector<uint16_t> &info_sec_rec,
-                                vector<vector<vector<vector<bool>>>> &Bt)
+                                vector<vector<vector<vector<uint16_t>>>> &Bt)
 {
     vector<vector<bool>> Roots = dec_param.Roots_V;
     uint16_t MxUS = dec_param.MxUS, n = dec_param.n, N = dec_param.N;

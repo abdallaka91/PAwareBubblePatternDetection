@@ -8,16 +8,16 @@
 
 // Function to append data to file, creating directories if they don't exist
 template <typename T>
-void appendToFile(const std::string& filename, const std::vector<std::vector<T>>& table) {
+bool appendToFile(const std::string& filename, const std::vector<std::vector<T>>& table, const bool newsim) {
     // Ensure the directory exists before trying to open the file
     std::filesystem::path filepath(filename);
     std::filesystem::create_directories(filepath.parent_path());  // Create the directory if it doesn't exist
 
     // Open file in append mode
-    std::ofstream file(filename, std::ios::app);
+    std::ofstream file(filename, newsim? std::ios::out : std::ios::app);
     if (!file.is_open()) {
         std::cerr << "Error: Could not open file " << filename << " for writing." << std::endl;
-        return;
+        return 0;
     }
 
     // Write table data to the file
@@ -29,7 +29,8 @@ void appendToFile(const std::string& filename, const std::vector<std::vector<T>>
     }
 
     file.close();
-    std::cout << "Data appended to " << filename << std::endl;
+    return 1;
+
 }
 
 #endif // HELPERFUNC_H

@@ -49,7 +49,7 @@ namespace PoAwN
                        const decoder_parameters &dec_param,
                        const uint16_t coef,
                        decoder_t &theta1,
-                       vector<vector<bool>> &Cs1);
+                       vector<vector<uint16_t>> &Cs1);
 
         void tuples_sorter(const decoder_t &tuples,
                            const uint16_t nm,
@@ -73,7 +73,7 @@ namespace PoAwN
                        const vector<vector<uint16_t>> &DIVDEC,
                        vector<vector<decoder_t>> &L,
                        vector<uint16_t> &info_sec_rec,
-                       vector<vector<vector<vector<bool>>>> &Cs);
+                       vector<vector<vector<vector<uint16_t>>>> &Cs);
 
     } // namespace decoding
 

@@ -6,16 +6,17 @@ project(TEST1)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Set debug flags (uncomment for Debug mode)
+# Debug build settings
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(CMAKE_CXX_FLAGS "-g -O0")
+    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION FALSE)
+endif()
 
-set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS "-g")
-set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
-set(CMAKE_INTERPROCEDURAL_OPTIMIZATION FALSE)
-
-# set(CMAKE_BUILD_TYPE Release)
-# set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native -flto -ffast-math -funroll-loops -fno-math-errno")
-# set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+# Release build settings
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(CMAKE_CXX_FLAGS "-O3 -march=native -flto -ffast-math -funroll-loops -fno-math-errno")
+    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+endif()
 
 
 
