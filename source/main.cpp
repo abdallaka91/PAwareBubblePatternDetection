@@ -144,9 +144,10 @@ int main(int argc, char *argv[])
     bin_table = code_param.sig_mod == "bpsk" ? table.BINDEC : CCSK_rotated_codes;
     vector<uint16_t> u_symb(code_param.N, 0);
     bool succ_dec, succ_writing, newsim;
-
-    for (int i0 = 1; i0 <= NbMonteCarlo; ++i0)
+        int succ_dec_frame=0, i0=0;
+    while (succ_dec_frame < NbMonteCarlo)
     {
+        i0++;
         L.resize(code_param.n + 1, vector<decoder_t>(code_param.N, temp_dec));
         vector<uint16_t> KSYMB;
         vector<vector<uint16_t>> KBIN;
@@ -184,6 +185,7 @@ int main(int argc, char *argv[])
         }
         if (succ_dec)
         {
+            succ_dec_frame++;
             for (uint16_t l = 0; l < n; l++)
             {
                 for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
@@ -199,9 +201,10 @@ int main(int argc, char *argv[])
                 }
             }
         }
-        if ((i0 % 200 == 0 && i0 > 0))
+        if ((i0 % 100 == 0 && i0 > 0))
             cout << "\rSNR: " << EbN0 << " dB, FER = " << FER << "/" << (float)i0 << " = " << (float)FER / (float)i0 << std::flush;
     }
+    cout << "\rSNR: " << EbN0 << " dB, FER = " << FER << "/" << (float)i0 << " = " << (float)FER / (float)i0 << std::flush;
     cout << endl;
     newsim = true;
     std::ostringstream fname;
