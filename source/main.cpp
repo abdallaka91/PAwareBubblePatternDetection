@@ -195,7 +195,8 @@ int main(int argc, char *argv[])
                                 Cs[l][s][j0][j1] += 1;
                         }
                     }
-                    Bt[l][s].assign(nH, vector<bool>(nL, false));
+                    for (auto &row : Bt[l][s])
+                        fill(row.begin(), row.end(), false);
                 }
         }
         if ((i0 % 200 == 0 && i0 > 0))
