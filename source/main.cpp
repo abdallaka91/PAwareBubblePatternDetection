@@ -85,8 +85,10 @@ int main(int argc, char *argv[])
 
     dec_param.Roots_V[n].resize(1U << n, false);
 
+    vector<vector<vector<vector<bool>>>> Bt;
     vector<vector<vector<vector<float>>>> Cs;
     Cs.resize(n);
+    Bt.resize(n);
 
     for (uint16_t l = 0; l < n; l++)
     {
@@ -96,9 +98,11 @@ int main(int argc, char *argv[])
         dec_param.clusts_VNs[l].resize(pow(2, l));
         dec_param.coefs_id[l].resize(pow(2, l));
         Cs[l].resize(pow(2, l));
+        Bt[l].resize(pow(2, l));
         for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
         {
             Cs[l][s].assign(nH, vector<float>(nL, 0));
+            Bt[l][s].assign(nH, vector<bool>(nL, false));
             uint16_t sz1 = N >> (l + 1U), sz2 = sz1 << 1U;
             dec_param.clusts_CNs[l][s].resize(sz1);
             dec_param.clusts_VNs[l][s].resize(sz1);
@@ -139,6 +143,7 @@ int main(int argc, char *argv[])
     vector<vector<uint16_t>> bin_table;
     bin_table = code_param.sig_mod == "bpsk" ? table.BINDEC : CCSK_rotated_codes;
     vector<uint16_t> u_symb(code_param.N, 0);
+    bool succ_dec;
 
     for (int i0 = 1; i0 <= NbMonteCarlo; ++i0)
     {
@@ -165,15 +170,33 @@ int main(int argc, char *argv[])
                     sigma, chan_LLR);
         LLR_sort(chan_LLR, dec_param.nm, L[0]);
 
-        decode_SC(dec_param, table.ADDDEC, table.MULDEC, table.DIVDEC, L, info_sec_rec, Cs);
+        decode_SC(dec_param, table.ADDDEC, table.MULDEC, table.DIVDEC, L, info_sec_rec, Bt);
+        succ_dec = true;
 
         for (uint16_t i = 0; i < dec_param.K; i++)
         {
             if (KSYMB[i] != info_sec_rec[i])
             {
+                succ_dec = false;
                 FER++;
                 break;
             }
+        }
+        if (succ_dec)
+        {
+            for (uint16_t l = 0; l < n; l++)
+                for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
+                {
+                    for (int j0 = 0; j0 < nH; j0++)
+                    {
+                        for (int j1 = 0; j1 < nL; j1++)
+                        {
+                            if (Bt[l][s][j0][j1])
+                                Cs[l][s][j0][j1] += 1;
+                        }
+                    }
+                    Bt[l][s].assign(nH, vector<bool>(nL, false));
+                }
         }
         if ((i0 % 200 == 0 && i0 > 0))
             cout << "\rSNR: " << EbN0 << " dB, FER = " << FER << "/" << (float)i0 << " = " << (float)FER / (float)i0 << std::flush;
@@ -183,8 +206,8 @@ int main(int argc, char *argv[])
     // fname << "/mnt/c/Users/Abdallah Abdallah/Desktop/BubblePattern/"
     //       << "N" << code_param.N << "_GF" << code_param.q
     //       << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << ".txt";
-    fname << "./BubblesPattern/N" << code_param.N <<  "/bubbles_N" << code_param.N << "_GF" << code_param.q
-    << "_SNR" << std::fixed << std::setprecision(2) << EbN0 <<"_" << dec_param.nH <<"x" << dec_param.nL <<".txt";
+    fname << "./BubblesPattern/N" << code_param.N << "/bubbles_N" << code_param.N << "_GF" << code_param.q
+          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << ".txt";
 
     std::string filename = fname.str(); // Convert to string
 

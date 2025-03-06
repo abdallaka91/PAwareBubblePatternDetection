@@ -7,16 +7,16 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Set debug flags (uncomment for Debug mode)
+
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS "-g")
-set(CMAKE_CXX_FLAGS_Debug "-O3 -march=native")
-set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
-set(CMAKE_CXX_FLAGS_Debug "${CMAKE_CXX_FLAGS_DEBUG} -march=native")
+set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION FALSE)
 
 # set(CMAKE_BUILD_TYPE Release)
-# set(CMAKE_CXX_FLAGS_Release "-O3 -march=native")
+# set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native -flto -ffast-math -funroll-loops -fno-math-errno")
 # set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
-# set(CMAKE_CXX_FLAGS_Release "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
+
 
 
 # Set source directory

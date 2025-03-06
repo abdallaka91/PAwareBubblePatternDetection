@@ -187,7 +187,7 @@ void PoAwN::decoding::ECN_EMS_L(const decoder_t &theta_1,
                                 const decoder_parameters &dec_param,
                                 const uint16_t coef,
                                 decoder_t &theta,
-                                vector<vector<float>> &Cs1)
+                                vector<vector<bool>> &Bt1)
 {
     decoder_t phi_1_p = phi_1;
     bool rel_theta = (theta_1.intrinsic_LLR[dec_param.Zc] > phi_1.intrinsic_LLR[dec_param.Zc]);
@@ -254,7 +254,7 @@ void PoAwN::decoding::ECN_EMS_L(const decoder_t &theta_1,
             break;
     }
     for (int i = 0; i < dec_param.nm; i++)
-        Cs1[sort_bub_idxs[i][0]][sort_bub_idxs[i][1]] += 1;
+        Bt1[sort_bub_idxs[i][0]][sort_bub_idxs[i][1]] = true;
 }
 
 void PoAwN::decoding::LLR_sort(const vector<vector<softdata_t>> &chan_LLR,
@@ -366,7 +366,7 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
                                 const vector<vector<uint16_t>> &MULDEC,
                                 vector<vector<decoder_t>> &L,
                                 vector<uint16_t> &info_sec_rec,
-                                vector<vector<vector<vector<float>>>> &Cs)
+                                vector<vector<vector<vector<bool>>>> &Bt)
 {
     vector<vector<bool>> Roots = dec_param.Roots_V;
     uint16_t MxUS = dec_param.MxUS, n = dec_param.n, N = dec_param.N;
@@ -451,7 +451,7 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
                 temp_coef = dec_param.polar_coeff[l][i3];
                 decoder_t theta;
                 // ECN_EMS(theta_1, phi_1, ADDDEC, DIVDEC, dec_param.nm, dec_param.q, temp_coef, theta);
-                ECN_EMS_L(theta_1, phi_1, ADDDEC, DIVDEC, dec_param, temp_coef, theta, Cs[l][s]);
+                ECN_EMS_L(theta_1, phi_1, ADDDEC, DIVDEC, dec_param, temp_coef, theta, Bt[l][s]);
                 // ECN_AEMS_bubble(theta_1, phi_1, dec_param, temp_coef, ADDDEC, DIVDEC, theta);
                 L[l + 1][Root[t]] = theta;
             }

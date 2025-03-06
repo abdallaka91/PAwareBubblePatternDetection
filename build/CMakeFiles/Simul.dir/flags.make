@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/include
 
-CXX_FLAGS = -g -g -std=gnu++17 -flto=auto -fno-fat-lto-objects -march=native -mtune=native -ffast-math
+CXX_FLAGS = -g -O0 -g -std=gnu++17 -march=native -mtune=native -ffast-math
 
