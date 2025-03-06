@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
     bin_table = code_param.sig_mod == "bpsk" ? table.BINDEC : CCSK_rotated_codes;
     vector<uint16_t> u_symb(code_param.N, 0);
     bool succ_dec, succ_writing, newsim;
-        int succ_dec_frame=0, i0=0;
+    int succ_dec_frame = 0, i0 = 0;
     while (succ_dec_frame < NbMonteCarlo)
     {
         i0++;
@@ -187,20 +187,17 @@ int main(int argc, char *argv[])
         {
             succ_dec_frame++;
             for (uint16_t l = 0; l < n; l++)
-            {
                 for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
-                {
                     for (int j0 = 0; j0 < nH; j0++)
-                    {
                         for (int j1 = 0; j1 < nL; j1++)
-                        {
                             Cs[l][s][j0][j1] += Bt[l][s][j0][j1];
-                            Bt[l][s][j0][j1] = 0;
-                        }
-                    }
-                }
-            }
         }
+        for (uint16_t l = 0; l < n; l++)
+            for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
+                for (auto &rw : Cs[l][s])
+                    for (auto &elem : rw)
+                        elem = 0;
+
         if ((i0 % 100 == 0 && i0 > 0))
             cout << "\rSNR: " << EbN0 << " dB, FER = " << FER << "/" << (float)i0 << " = " << (float)FER / (float)i0 << std::flush;
     }
