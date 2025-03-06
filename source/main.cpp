@@ -191,10 +191,11 @@ int main(int argc, char *argv[])
                     for (int j0 = 0; j0 < nH; j0++)
                     {
                         for (int j1 = 0; j1 < nL; j1++)
+                        {
                             Cs[l][s][j0][j1] += Bt[l][s][j0][j1];
+                            Bt[l][s][j0][j1] = 0;
+                        }
                     }
-                    for (auto &row : Bt[l][s])
-                        fill(row.begin(), row.end(), 0);
                 }
             }
         }
