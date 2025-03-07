@@ -280,13 +280,10 @@ int main(int argc, char *argv[])
                 std::ostringstream lne;
                 for (int j0 = 0; j0 < nH; j0++)
                     for (int j1 = 0; j1 < nL; j1++)
-                    {
                         if (Bt[l][s][j0][j1])
-                        {
-                            lne << j0 << j1 << ",";
-                        }
-                    }
-                lne << "\n";
+                            lne << j0 << " " << j1 << ",";
+                if (!(l == n - 1 && s == (1u << l) - 1))
+                    lne << "\n"; // Add newline if it's not the last line
                 fprintf(file, "%s", lne.str().c_str());
                 newsim = false;
             }
