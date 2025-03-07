@@ -30,12 +30,12 @@ int main(int argc, char *argv[])
 
     if (argc != 13 && argc != 1)
     {
-        cout << "validate: NbMonteCarlo, SNR, is_bpsk, q, N, K, nL, nH, nm, nb, Zc, offset" << std::endl;
+        cout << "validate: NbMonteCarlo, SNR, is_bpsk, q, N, K, nL, nH, nm, Zc, offset, Pt" << std::endl;
         return 1;
     }
 
     int NbMonteCarlo = stoi(argv[1]);
-    float EbN0 = stod(argv[2]);
+    float EbN0 = stod(argv[2]), Pt;
     bool is_bpsk = (bool)stod(argv[3]);
 
     uint16_t q, N, K, n, nL, nH, nm, nb, Zc, nopM, p, frozen_val = 0;
@@ -48,9 +48,10 @@ int main(int argc, char *argv[])
     nL = stoi(argv[7]);
     nH = stoi(argv[8]);
     nm = stoi(argv[9]);
-    nb = stoi(argv[10]);
-    Zc = stoi(argv[11]);
-    offset = stod(argv[12]);
+    nb = 0; // stoi(argv[10]);
+    Zc = stoi(argv[10]);
+    offset = stod(argv[11]);
+    Pt = stod(argv[12]);
     nopM = nm + 4;
 
     base_code_t code_param(N, K, n, q, p, frozen_val);
@@ -86,9 +87,11 @@ int main(int argc, char *argv[])
     dec_param.Roots_V[n].resize(1U << n, false);
 
     vector<vector<vector<vector<uint16_t>>>> Bt;
-    vector<vector<vector<vector<uint64_t>>>> Cs;
+    vector<vector<vector<vector<float>>>> Cs;
+    vector<vector<vector<vector<uint64_t>>>> Rs;
     Cs.resize(n);
     Bt.resize(n);
+    Rs.resize(n);
 
     for (uint16_t l = 0; l < n; l++)
     {
@@ -101,7 +104,7 @@ int main(int argc, char *argv[])
         Bt[l].resize(pow(2, l));
         for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
         {
-            Cs[l][s].assign(nH, vector<uint64_t>(nL, 0));
+            Cs[l][s].assign(nH, vector<float>(nL, 0));
             Bt[l][s].assign(nH, vector<uint16_t>(nL, 0));
             uint16_t sz1 = N >> (l + 1U), sz2 = sz1 << 1U;
             dec_param.clusts_CNs[l][s].resize(sz1);
@@ -187,13 +190,13 @@ int main(int argc, char *argv[])
         {
             succ_dec_frame++;
             for (uint16_t l = 0; l < n; l++)
-                for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
+                for (uint16_t s = 0; s < N >> (n - l); s++)
                     for (int j0 = 0; j0 < nH; j0++)
                         for (int j1 = 0; j1 < nL; j1++)
-                            Cs[l][s][j0][j1] += Bt[l][s][j0][j1];
+                            Cs[l][s][j0][j1] += (float)Bt[l][s][j0][j1];
         }
         for (uint16_t l = 0; l < n; l++)
-            for (uint16_t s = 0; s < dec_param.Roots_V[l].size(); s++)
+            for (uint16_t s = 0; s < N >> (n - l); s++)
                 for (auto &rw : Bt[l][s])
                     for (auto &elem : rw)
                         elem = 0;
@@ -201,6 +204,18 @@ int main(int argc, char *argv[])
         if ((i0 % 100 == 0 && i0 > 0))
             cout << "\rSNR: " << EbN0 << " dB, FER = " << FER << "/" << (float)i0 << " = " << (float)FER / (float)i0 << std::flush;
     }
+
+    for (uint16_t l = 0; l < n; l++)
+        for (uint16_t s = 0; s < N >> (n - l); s++)
+            for (int j0 = 0; j0 < nH; j0++)
+                for (int j1 = 0; j1 < nL; j1++)
+                {
+                    Cs[l][s][j0][j1] /= (float)(1 << (n - (l + 1))); // normalize 2^(n-l+1)
+                    Cs[l][s][j0][j1] /= (float)NbMonteCarlo;
+                    if (Cs[l][s][j0][j1] > Pt)
+                        Bt[l][s][j0][j1] = true;
+                }
+
     cout << "\rSNR: " << EbN0 << " dB, FER = " << FER << "/" << (float)i0 << " = " << (float)FER / (float)i0 << std::flush;
     cout << endl;
     newsim = true;
@@ -209,9 +224,9 @@ int main(int argc, char *argv[])
     //       << "N" << code_param.N << "_GF" << code_param.q
     //       << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << ".txt";
     fname << "./BubblesPattern/N" << code_param.N << "/bubbles_N" << code_param.N << "_GF" << code_param.q
-          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << ".txt";
+          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Cs_mat.txt";
 
-    std::string filename = fname.str(); // Convert to string
+    std::string filename = fname.str();
 
     for (int i = 0; i < n; i++)
     {
@@ -222,5 +237,60 @@ int main(int argc, char *argv[])
         }
     }
     if (succ_writing)
-        std::cout << "Bubbles pattern written to: " << filename << std::endl;
+        std::cout << "Cs Matrices written to: " << filename << std::endl;
+
+    newsim = true;
+    fname.str("");
+    fname.clear();
+
+    fname << "./BubblesPattern/N" << code_param.N << "/bubbles_N" << code_param.N << "_GF" << code_param.q
+          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Bt_mat.txt";
+
+    filename = fname.str();
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < 1u << i; j++)
+        {
+            succ_writing = appendToFile(fname.str(), Bt[i][j], newsim);
+            newsim = false;
+        }
+    }
+    if (succ_writing)
+        std::cout << "Bt Matrices written to: " << filename << std::endl;
+
+    newsim = true;
+    fname.str("");
+    fname.clear();
+    fname << "./BubblesPattern/N" << code_param.N << "/bubbles_N" << code_param.N << "_GF" << code_param.q
+          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Bt_lsts.txt";
+
+    filename = fname.str();
+
+    std::filesystem::create_directories(std::filesystem::path(filename).parent_path());
+
+    FILE *file = fopen(filename.c_str(), newsim ? "w" : "a");
+    if (!file)
+        std::cerr << "Error: Could not open file " << filename << " for writing." << std::endl;
+    else
+    {
+        for (int l = 0; l < n; l++)
+            for (int s = 0; s < (1u << l); s++)
+            {
+                std::ostringstream lne;
+                for (int j0 = 0; j0 < nH; j0++)
+                    for (int j1 = 0; j1 < nL; j1++)
+                    {
+                        if (Bt[l][s][j0][j1])
+                        {
+                            lne << j0 << j1 << ",";
+                        }
+                    }
+                lne << "\n";
+                fprintf(file, "%s", lne.str().c_str());
+                newsim = false;
+            }
+        fclose(file);
+        std::cout << "Bt Matrices written to: " << filename << std::endl;
+    }
 }

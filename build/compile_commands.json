@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build",
+  "command": "/usr/bin/g++  -I/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/include -g -O0 -g -std=gnu++17 -march=native -mtune=native -ffast-math -o CMakeFiles/Simul.dir/source/main.cpp.o -c /home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/main.cpp",
+  "file": "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/main.cpp",
+  "output": "CMakeFiles/Simul.dir/source/main.cpp.o"
+},
+{
+  "directory": "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build",
+  "command": "/usr/bin/g++  -I/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/include -g -O0 -g -std=gnu++17 -march=native -mtune=native -ffast-math -o CMakeFiles/Simul.dir/source/GF_tools.cpp.o -c /home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/GF_tools.cpp",
+  "file": "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/GF_tools.cpp",
+  "output": "CMakeFiles/Simul.dir/source/GF_tools.cpp.o"
+},
+{
+  "directory": "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build",
+  "command": "/usr/bin/g++  -I/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/include -g -O0 -g -std=gnu++17 -march=native -mtune=native -ffast-math -o CMakeFiles/Simul.dir/source/init.cpp.o -c /home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/init.cpp",
+  "file": "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/init.cpp",
+  "output": "CMakeFiles/Simul.dir/source/init.cpp.o"
+},
+{
+  "directory": "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build",
+  "command": "/usr/bin/g++  -I/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/include -g -O0 -g -std=gnu++17 -march=native -mtune=native -ffast-math -o CMakeFiles/Simul.dir/source/tools.cpp.o -c /home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/tools.cpp",
+  "file": "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/tools.cpp",
+  "output": "CMakeFiles/Simul.dir/source/tools.cpp.o"
+},
+{
+  "directory": "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build",
+  "command": "/usr/bin/g++  -I/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/include -g -O0 -g -std=gnu++17 -march=native -mtune=native -ffast-math -o CMakeFiles/Simul.dir/source/Decoder_functions.cpp.o -c /home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/Decoder_functions.cpp",
+  "file": "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/Decoder_functions.cpp",
+  "output": "CMakeFiles/Simul.dir/source/Decoder_functions.cpp.o"
+}
+]
