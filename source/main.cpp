@@ -12,6 +12,7 @@
 #include <fstream>
 #include <iomanip>
 #include <cstring>
+#include <iomanip>
 
 using namespace PoAwN::structures;
 using namespace PoAwN::tools;
@@ -223,8 +224,9 @@ int main(int argc, char *argv[])
     // fname << "/mnt/c/Users/Abdallah Abdallah/Desktop/BubblePattern/"
     //       << "N" << code_param.N << "_GF" << code_param.q
     //       << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << ".txt";
-    fname << "./BubblesPattern/N" << code_param.N << "/bubbles_N" << code_param.N << "_GF" << code_param.q
-          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Cs_mat.txt";
+    fname << "./BubblesPattern/N" << code_param.N << "/CotributionMatrices/" << "bubbles_N" << code_param.N << "_GF" << code_param.q
+          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Pt"
+          << std::fixed << std::setprecision(2) <<Pt <<"_Cs_mat.txt";
 
     std::string filename = fname.str();
 
@@ -243,8 +245,9 @@ int main(int argc, char *argv[])
     fname.str("");
     fname.clear();
 
-    fname << "./BubblesPattern/N" << code_param.N << "/bubbles_N" << code_param.N << "_GF" << code_param.q
-          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Bt_mat.txt";
+    fname << "./BubblesPattern/N" << code_param.N << "/CotributionMatrices/" << "bubbles_N" << code_param.N << "_GF" << code_param.q
+          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Pt"
+          << std::fixed << std::setprecision(2) <<Pt << "_Bt_mat.txt";
 
     filename = fname.str();
 
@@ -263,7 +266,8 @@ int main(int argc, char *argv[])
     fname.str("");
     fname.clear();
     fname << "./BubblesPattern/N" << code_param.N << "/bubbles_N" << code_param.N << "_GF" << code_param.q
-          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Bt_lsts.txt";
+          << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Pt"
+          << std::fixed << std::setprecision(2) <<Pt << "_Bt_lsts.txt";
 
     filename = fname.str();
 
@@ -275,18 +279,21 @@ int main(int argc, char *argv[])
     else
     {
         for (int l = 0; l < n; l++)
+        {
             for (int s = 0; s < (1u << l); s++)
             {
                 std::ostringstream lne;
                 for (int j0 = 0; j0 < nH; j0++)
                     for (int j1 = 0; j1 < nL; j1++)
                         if (Bt[l][s][j0][j1])
-                            lne << j0 << " " << j1 << ",";
+                        lne <<j0<<"  "<< j1 << std::setw(8);
                 if (!(l == n - 1 && s == (1u << l) - 1))
-                    lne << "\n"; // Add newline if it's not the last line
+                    lne << "\n"; 
                 fprintf(file, "%s", lne.str().c_str());
                 newsim = false;
             }
+            fprintf(file, "%s", "\n");
+        }
         fclose(file);
         std::cout << "Bt Matrices written to: " << filename << std::endl;
     }

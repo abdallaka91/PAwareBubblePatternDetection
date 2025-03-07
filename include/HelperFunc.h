@@ -27,6 +27,7 @@ bool appendToFile(const std::string& filename, const std::vector<std::vector<T>>
         }
         file << "\n";  // Newline after each row
     }
+    file << "\n";
 
     file.close();
     return 1;
