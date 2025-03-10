@@ -8,11 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/Decoder_functions.cpp" "CMakeFiles/Simul.dir/source/Decoder_functions.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/Decoder_functions.cpp.o.d"
-  "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/GF_tools.cpp" "CMakeFiles/Simul.dir/source/GF_tools.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/GF_tools.cpp.o.d"
-  "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/init.cpp" "CMakeFiles/Simul.dir/source/init.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/init.cpp.o.d"
-  "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/main.cpp" "CMakeFiles/Simul.dir/source/main.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/main.cpp.o.d"
-  "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/source/tools.cpp" "CMakeFiles/Simul.dir/source/tools.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/tools.cpp.o.d"
+  "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/Decoder_functions.cpp" "CMakeFiles/Simul.dir/source/Decoder_functions.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/Decoder_functions.cpp.o.d"
+  "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/GF_tools.cpp" "CMakeFiles/Simul.dir/source/GF_tools.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/GF_tools.cpp.o.d"
+  "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/channel.cpp" "CMakeFiles/Simul.dir/source/channel.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/channel.cpp.o.d"
+  "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/init.cpp" "CMakeFiles/Simul.dir/source/init.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/init.cpp.o.d"
+  "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_decoding.cpp" "CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o.d"
+  "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/tools.cpp" "CMakeFiles/Simul.dir/source/tools.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/tools.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

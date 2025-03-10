@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection
+CMAKE_SOURCE_DIR = /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build
+CMAKE_BINARY_DIR = /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build/CMakeFiles /home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/CMakeFiles /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -177,6 +177,30 @@ source/GF_tools.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/GF_tools.cpp.s
 .PHONY : source/GF_tools.cpp.s
 
+source/channel.o: source/channel.cpp.o
+.PHONY : source/channel.o
+
+# target to build an object file
+source/channel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/channel.cpp.o
+.PHONY : source/channel.cpp.o
+
+source/channel.i: source/channel.cpp.i
+.PHONY : source/channel.i
+
+# target to preprocess a source file
+source/channel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/channel.cpp.i
+.PHONY : source/channel.cpp.i
+
+source/channel.s: source/channel.cpp.s
+.PHONY : source/channel.s
+
+# target to generate assembly for a file
+source/channel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/channel.cpp.s
+.PHONY : source/channel.cpp.s
+
 source/init.o: source/init.cpp.o
 .PHONY : source/init.o
 
@@ -201,29 +225,29 @@ source/init.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/init.cpp.s
 .PHONY : source/init.cpp.s
 
-source/main.o: source/main.cpp.o
-.PHONY : source/main.o
+source/simulator_decoding.o: source/simulator_decoding.cpp.o
+.PHONY : source/simulator_decoding.o
 
 # target to build an object file
-source/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/main.cpp.o
-.PHONY : source/main.cpp.o
+source/simulator_decoding.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o
+.PHONY : source/simulator_decoding.cpp.o
 
-source/main.i: source/main.cpp.i
-.PHONY : source/main.i
+source/simulator_decoding.i: source/simulator_decoding.cpp.i
+.PHONY : source/simulator_decoding.i
 
 # target to preprocess a source file
-source/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/main.cpp.i
-.PHONY : source/main.cpp.i
+source/simulator_decoding.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_decoding.cpp.i
+.PHONY : source/simulator_decoding.cpp.i
 
-source/main.s: source/main.cpp.s
-.PHONY : source/main.s
+source/simulator_decoding.s: source/simulator_decoding.cpp.s
+.PHONY : source/simulator_decoding.s
 
 # target to generate assembly for a file
-source/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/main.cpp.s
-.PHONY : source/main.cpp.s
+source/simulator_decoding.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_decoding.cpp.s
+.PHONY : source/simulator_decoding.cpp.s
 
 source/tools.o: source/tools.cpp.o
 .PHONY : source/tools.o
@@ -264,12 +288,15 @@ help:
 	@echo "... source/GF_tools.o"
 	@echo "... source/GF_tools.i"
 	@echo "... source/GF_tools.s"
+	@echo "... source/channel.o"
+	@echo "... source/channel.i"
+	@echo "... source/channel.s"
 	@echo "... source/init.o"
 	@echo "... source/init.i"
 	@echo "... source/init.s"
-	@echo "... source/main.o"
-	@echo "... source/main.i"
-	@echo "... source/main.s"
+	@echo "... source/simulator_decoding.o"
+	@echo "... source/simulator_decoding.i"
+	@echo "... source/simulator_decoding.s"
 	@echo "... source/tools.o"
 	@echo "... source/tools.i"
 	@echo "... source/tools.s"

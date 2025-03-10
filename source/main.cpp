@@ -12,12 +12,16 @@
 #include <fstream>
 #include <iomanip>
 #include <cstring>
+#include <string>
 #include <iomanip>
+#include <algorithm>
+#include "channel.h"
 
 using namespace PoAwN::structures;
 using namespace PoAwN::tools;
 using namespace PoAwN::init;
 using namespace PoAwN::decoding;
+using namespace PoAwN::channel;
 using std::array;
 using std::cout;
 using std::endl;
@@ -29,18 +33,18 @@ using std::vector;
 int main(int argc, char *argv[])
 {
 
-    if (argc != 13 && argc != 1)
+    if (argc != 13)
     {
-        cout << "validate: NbMonteCarlo, SNR, is_bpsk, q, N, K, nL, nH, nm, Zc, offset, Pt" << std::endl;
+        cout << "validate: NbMonteCarlo, SNR, sig_mod(BPSK, CCSK_bin, CCSK_NB), q, N, K, nL, nH, nm, Zc, offset, Pt" << std::endl;
         return 1;
     }
-
-    int NbMonteCarlo = stoi(argv[1]);
-    float EbN0 = stod(argv[2]), Pt;
-    bool is_bpsk = (bool)stod(argv[3]);
-
     uint16_t q, N, K, n, nL, nH, nm, nb, Zc, nopM, p, frozen_val = 0;
     softdata_t offset;
+    int NbMonteCarlo = stoi(argv[1]);
+    float Pt, EbN0 = stod(argv[2]);
+    string sig_mod = argv[3];
+    ;
+    std::transform(sig_mod.begin(), sig_mod.end(), sig_mod.begin(), ::toupper);
     q = stoi(argv[4]);
     p = log2(q);
     N = stoi(argv[5]);
@@ -49,14 +53,14 @@ int main(int argc, char *argv[])
     nL = stoi(argv[7]);
     nH = stoi(argv[8]);
     nm = stoi(argv[9]);
-    nb = 0; // stoi(argv[10]);
     Zc = stoi(argv[10]);
     offset = stod(argv[11]);
     Pt = stod(argv[12]);
     nopM = nm + 4;
+    nb = 4;
 
     base_code_t code_param(N, K, n, q, p, frozen_val);
-    code_param.sig_mod = is_bpsk ? "bpsk" : "ccsk";
+    code_param.sig_mod = sig_mod;
 
     int gf_rand_SEED = 0;
     float nse_rand_SEED = 1.2544;
@@ -66,9 +70,6 @@ int main(int argc, char *argv[])
 
     cout << "Loading code_param..." << endl;
     LoadCode(code_param, EbN0);
-
-    vector<vector<uint16_t>> CCSK_rotated_codes(q, vector<uint16_t>());
-    create_ccsk_rotated_table(CCSK_bin_seq.data(), CCSK_bin_seq.size(), CCSK_rotated_codes);
     cout << "OK!, " << "Loading tables..." << endl;
     // void LoadTables(base_code_t & code, table_GF & table,  const uint16_t *GF_polynom_primitive)
     LoadTables(code_param, table, GF_polynom_primitive.data());
@@ -128,55 +129,36 @@ int main(int argc, char *argv[])
         }
     }
 
-    vector<uint16_t> NSYMB(N);
-    vector<vector<uint16_t>> KBIN, NBIN;
-    unsigned int FER = 0;
-    vector<vector<decoder_t>> L;
-    NBIN.resize(code_param.N, vector<uint16_t>());
+    CCSK_seq ccsk_seq;
+    vector<vector<uint16_t>> CCSK_rotated_codes(q, vector<uint16_t>());
+    if (code_param.sig_mod == "CCSK_BIN")
+        create_ccsk_rotated_table(ccsk_seq.CCSK_bin_seq[code_param.p - 1], ccsk_seq.CCSK_bin_seq[code_param.p - 1].size(), CCSK_rotated_codes);
+    else if (code_param.sig_mod == "CCSK_NB")
+        create_ccsk_rotated_table(ccsk_seq.CCSK_GF_seq[code_param.p - 1], ccsk_seq.CCSK_GF_seq[code_param.p - 1].size(), CCSK_rotated_codes);
 
     decoder_t temp_dec;
+    temp_dec.intrinsic_LLR.resize(dec_param.nm, 0);
+    temp_dec.intrinsic_GF.resize(dec_param.nm, 0);
 
-    temp_dec.intrinsic_LLR.reserve(dec_param.nm);
-    temp_dec.intrinsic_GF.reserve(dec_param.nm);
-
-    vector<vector<softdata_t>> chan_LLR(N, vector<softdata_t>(code_param.q, 0));
+    vector<vector<decoder_t>> L;
     vector<uint16_t> info_sec_rec(K, dec_param.MxUS);
-    vector<vector<softdata_t>> noisy_sig(code_param.N,
-                                         vector<softdata_t>(is_bpsk ? code_param.p : code_param.q, (softdata_t)0.0));
-
-    vector<vector<uint16_t>> bin_table;
-    bin_table = code_param.sig_mod == "bpsk" ? table.BINDEC : CCSK_rotated_codes;
-    vector<uint16_t> u_symb(code_param.N, 0);
+    unsigned int FER = 0;
+    vector<uint16_t> KSYMB(K);
     bool succ_dec, succ_writing, newsim;
     int succ_dec_frame = 0, i0 = 0;
     while (succ_dec_frame < NbMonteCarlo)
     {
         i0++;
-        L.resize(code_param.n + 1, vector<decoder_t>(code_param.N, temp_dec));
-        vector<uint16_t> KSYMB;
+        succ_dec = 1;
+        L.assign(code_param.n + 1, vector<decoder_t>(code_param.N, temp_dec));
+
         vector<vector<uint16_t>> KBIN;
-
-        RandomBinaryGenerator(code_param, bin_table,
-                              repeatable_randgen, gf_rand_SEED, KBIN, KSYMB);
-
-        for (int i = 0; i < code_param.K; i++)
-            u_symb[code_param.reliab_sequence[i]] = KSYMB[i];
-        Encoder(table.ADDDEC, table.MULDEC, code_param.polar_coeff, u_symb, NSYMB);
-
-        if (is_bpsk)
-            for (int i = 0; i < int(NSYMB.size()); i++)
-                NBIN[i] = table.BINDEC[NSYMB[i]];
-        else
-            for (int i = 0; i < int(NSYMB.size()); i++)
-                NBIN[i] = CCSK_rotated_codes[NSYMB[i]];
-
-        awgn_channel_noise(NBIN, sigma, repeatable_randgen, nse_rand_SEED, noisy_sig);
-        Channel_LLR(noisy_sig, is_bpsk ? table.BINDEC : CCSK_rotated_codes, code_param.q,
-                    sigma, chan_LLR);
-        LLR_sort(chan_LLR, dec_param.nm, L[0]);
+        if (code_param.sig_mod == "CCSK_BIN")
+            EncodeChanBinCCSK(dec_param, table, EbN0, CCSK_rotated_codes, L[0], KSYMB);
+        else if (code_param.sig_mod == "CCSK_NB")
+            EncodeChanGF_CCSK(dec_param, table, EbN0, CCSK_rotated_codes, L[0], KSYMB);
 
         decode_SC(dec_param, table.ADDDEC, table.MULDEC, table.DIVDEC, L, info_sec_rec, Bt);
-        succ_dec = true;
 
         for (uint16_t i = 0; i < dec_param.K; i++)
         {
@@ -221,12 +203,20 @@ int main(int argc, char *argv[])
     cout << endl;
     newsim = true;
     std::ostringstream fname;
+    string bubble_direct;
+    if (code_param.sig_mod == "BPSK")
+        bubble_direct = "./BubblesPattern/BPSK/N";
+    else if (code_param.sig_mod == "CCSK_BIN")
+        bubble_direct = "./BubblesPattern/CCSK_BIN/N";
+    else
+        bubble_direct = "./BubblesPattern/CCSK_NB/N";
+
     // fname << "/mnt/c/Users/Abdallah Abdallah/Desktop/BubblePattern/"
     //       << "N" << code_param.N << "_GF" << code_param.q
     //       << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << ".txt";
-    fname << "./BubblesPattern/N" << code_param.N << "/CotributionMatrices/" << "bubbles_N" << code_param.N << "_GF" << code_param.q
+    fname << bubble_direct << code_param.N << "/CotributionMatrices/" << "bubbles_N" << code_param.N << "_GF" << code_param.q
           << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Pt"
-          << std::fixed << std::setprecision(2) <<Pt <<"_Cs_mat.txt";
+          << std::fixed << std::setprecision(2) << Pt << "_Cs_mat.txt";
 
     std::string filename = fname.str();
 
@@ -245,9 +235,9 @@ int main(int argc, char *argv[])
     fname.str("");
     fname.clear();
 
-    fname << "./BubblesPattern/N" << code_param.N << "/CotributionMatrices/" << "bubbles_N" << code_param.N << "_GF" << code_param.q
+    fname << bubble_direct << code_param.N << "/CotributionMatrices/" << "bubbles_N" << code_param.N << "_GF" << code_param.q
           << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Pt"
-          << std::fixed << std::setprecision(2) <<Pt << "_Bt_mat.txt";
+          << std::fixed << std::setprecision(2) << Pt << "_Bt_mat.txt";
 
     filename = fname.str();
 
@@ -265,9 +255,9 @@ int main(int argc, char *argv[])
     newsim = true;
     fname.str("");
     fname.clear();
-    fname << "./BubblesPattern/N" << code_param.N << "/bubbles_N" << code_param.N << "_GF" << code_param.q
+    fname << bubble_direct << code_param.N << "/bubbles_N" << code_param.N << "_GF" << code_param.q
           << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Pt"
-          << std::fixed << std::setprecision(2) <<Pt << "_Bt_lsts.txt";
+          << std::fixed << std::setprecision(2) << Pt << "_Bt_lsts.txt";
 
     filename = fname.str();
 
@@ -286,9 +276,9 @@ int main(int argc, char *argv[])
                 for (int j0 = 0; j0 < nH; j0++)
                     for (int j1 = 0; j1 < nL; j1++)
                         if (Bt[l][s][j0][j1])
-                        lne <<j0<<"  "<< j1 << std::setw(8);
+                            lne << j0 << "  " << j1 << std::setw(8);
                 if (!(l == n - 1 && s == (1u << l) - 1))
-                    lne << "\n"; 
+                    lne << "\n";
                 fprintf(file, "%s", lne.str().c_str());
                 newsim = false;
             }

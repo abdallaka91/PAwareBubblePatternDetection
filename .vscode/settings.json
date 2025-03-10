@@ -51,7 +51,8 @@
         "iomanip": "cpp",
         "sstream": "cpp",
         "codecvt": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "variant": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}"
 }

@@ -6,15 +6,22 @@
 #include <cstring>
 #include <iostream>
 #include "init.h"
-
+#include <sstream>
 void PoAwN::init::LoadCode(PoAwN::structures::base_code_t &code, float SNR)
 {
     code.Rate = (float)code.K / (float)code.N;
     code.reliab_sequence.resize(code.q, 0);
 
-    // Construct file name using std::ostringstream
     std::ostringstream fname;
-    fname << "./matrices/N" << code.N << "/mat_N" << code.N << "_GF"
+    std::string mat_direct;
+    if (code.sig_mod == "bpsk")
+        mat_direct = "./matrices/bpsk/N";
+    else if (code.sig_mod == "CCSK_BIN")
+        mat_direct = "./matrices/ccsk_bin/N";
+    else
+        mat_direct = "./matrices/ccsk_nb/N";
+
+    fname << mat_direct << code.N << "/mat_N" << code.N << "_GF"
           << code.q << "_SNR" << std::fixed << std::setprecision(2) << SNR
           << ".txt";
 
@@ -60,9 +67,84 @@ void PoAwN::init::LoadCode(PoAwN::structures::base_code_t &code, float SNR)
     }
 }
 
+void PoAwN::init::LoadBubblesIndcatorlists(PoAwN::structures::decoder_parameters &dec,
+     const float SNR,
+      const float Pt)
+{
+    uint16_t n = dec.n, nH = dec.nH, nL = dec.nL;
+    std::ostringstream fname;
+    std::string mat_direct;
+    if (dec.sig_mod == "bpsk")
+        mat_direct = "./BubblesPattern/bpsk/N";
+    else if (dec.sig_mod == "CCSK_BIN")
+        mat_direct = "./BubblesPattern/ccsk_bin/N";
+    else
+        mat_direct = "./BubblesPattern/ccsk_nb/N";
+
+    fname << mat_direct << dec.N << "/bubbles_N" << dec.N << "_GF" << dec.q
+          << "_SNR" << std::fixed << std::setprecision(2) << SNR << "_" << dec.nH << "x" <<  std::fixed << std::setprecision(2) << dec.nL << "_Pt"
+          << std::fixed << std::setprecision(2) <<Pt << "_Bt_lsts.txt";
+    std::string filename = fname.str();
+
+    std::ifstream file(filename);
+    std::vector<std::string> lines;
+    std::string line;
+    int linecount = 0;
+    while (std::getline(file, line))
+    {
+        if (!line.empty())
+        {
+            lines.push_back(line);
+            linecount++;
+        }
+    }
+    if (linecount != (1u << n) - 1)
+    {
+        std::cerr << "File data is not enough, it should  contain " << 1u << n - 1 << "lines, each contains the list of (i,j) coordinates of cluster s at layer l!" << std::endl;
+        return;
+    }
+
+    int line_cnt0,  line_cnt= 0;
+    dec.Bubb_Indicator.resize(n);
+    for (int l = 0; l < n; l++)
+    {
+        dec.Bubb_Indicator[l].resize(1 << l);
+        line_cnt0 = (1u << l) - 1;
+        for (int s = 0; s < (1u << l); s++)
+        {
+            line_cnt = line_cnt0+s;
+            dec.Bubb_Indicator[l][s].resize(2);
+            {
+                std::istringstream iss(lines[line_cnt]);
+                std::vector<int> numbers;
+                std::string token;
+                while (iss >> token)
+                {
+                    std::string clean;
+                    for (char c : token)
+                        if (std::isdigit(c))
+                            clean += c;
+                        else if (!clean.empty())
+                        { 
+                            numbers.push_back(std::stoi(clean));
+                            clean.clear();
+                        }
+                    if (!clean.empty())
+                        numbers.push_back(std::stoi(clean));
+                }
+
+                for (size_t i = 0; i < numbers.size(); i += 2)
+                {
+                    dec.Bubb_Indicator[l][s][0].push_back(numbers[i]);
+                    dec.Bubb_Indicator[l][s][1].push_back(numbers[i + 1]);
+                }
+            }
+        }
+    }
+}
 void PoAwN::init::LoadTables(PoAwN::structures::base_code_t &code,
-                PoAwN::structures::table_GF &table,
-                const uint16_t *GF_polynom_primitive)
+                             PoAwN::structures::table_GF &table,
+                             const uint16_t *GF_polynom_primitive)
 {
     uint16_t prim_pol = GF_polynom_primitive[code.p - 2];
     PoAwN::GFtools::GF_bin_seq_gen(code.q, prim_pol, table.BINGF, table.BINDEC);

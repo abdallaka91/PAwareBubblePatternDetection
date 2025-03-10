@@ -1,4 +1,4 @@
-# Install script for directory: /home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection
+# Install script for directory: /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -12,7 +12,7 @@ if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
     string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
            CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
   else()
-    set(CMAKE_INSTALL_CONFIG_NAME "Release")
+    set(CMAKE_INSTALL_CONFIG_NAME "Debug")
   endif()
   message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
 endif()
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/abdallah_ubuntu/Desktop/PA_NB_PC_1/PAwareBubblePatternDetection/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
