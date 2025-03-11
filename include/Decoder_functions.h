@@ -88,13 +88,14 @@ namespace PoAwN
                        decoder_t &theta1,
                        vector<vector<uint16_t>> &Cs1);
 
-        void decode_SC(const decoder_parameters &dec_param,
+        void decode_SC_bubble_gen(const decoder_parameters &dec_param,
                        const vector<vector<uint16_t>> &ADDDEC,
                        const vector<vector<uint16_t>> &MULDEC,
                        const vector<vector<uint16_t>> &DIVDEC,
                        vector<vector<decoder_t>> &L,
                        vector<uint16_t> &info_sec_rec,
                        vector<vector<vector<vector<uint16_t>>>> &Cs);
+        void frozen_lay_pos(const decoder_parameters dec_param, vector<vector<uint16_t>> &ucap);
 
     } // namespace decoding
 

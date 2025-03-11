@@ -65,6 +65,8 @@ namespace PoAwN
             softdata_t offset;
             uint16_t nm, nL, nH, nb, Zc, nopM;
             vector<vector<vector<vector<uint16_t>>>> Bubb_Indicator;
+            vector<vector<uint16_t>> ucap;
+            vector<vector<uint16_t>> ns;
             decoder_parameters(const base_code_t &base, softdata_t offset = 0, uint16_t nm = 0,
                                uint16_t nL = 0, uint16_t nH = 0, uint16_t nb = 0, uint16_t Zc = 0, uint16_t nopM = 0)
                 : base_code_t(base),

@@ -563,20 +563,33 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
             SZc = Root.size();
             SZc1 = SZc >> 1;
             decoder_t phi_1, theta_1;
+            int cnt0 = 0;
             for (uint16_t t = 0; t < SZc1; t++)
             {
-                i3 = dec_param.coefs_id[l][s][t];
-                theta_1 = L[l][Root[t]];
-                phi_1 = L[l][Root[t + SZc1]];
-                temp_coef = dec_param.polar_coeff[l][i3];
-                decoder_t theta;
-                // ECN_EMS(theta_1, phi_1, ADDDEC, DIVDEC, dec_param.nm, dec_param.q, temp_coef, theta);
-                //  ECN_AEMS_bubble(theta_1, phi_1, dec_param, temp_coef, ADDDEC, DIVDEC, theta);
-                ECN_PA(theta_1, phi_1, ADDDEC, DIVDEC, dec_param, temp_coef, dec_param.Bubb_Indicator[l][s], theta);
-                L[l + 1][Root[t]] = theta;
+                if (dec_param.ucap[l + 1][Root[t]] != dec_param.frozen_val)
+                {
+                    i3 = dec_param.coefs_id[l][s][t];
+                    theta_1 = L[l][Root[t]];
+                    phi_1 = L[l][Root[t + SZc1]];
+                    temp_coef = dec_param.polar_coeff[l][i3];
+                    decoder_t theta;
+                    // ECN_EMS(theta_1, phi_1, ADDDEC, DIVDEC, dec_param.nm, dec_param.q, temp_coef, theta);
+                    //  ECN_AEMS_bubble(theta_1, phi_1, dec_param, temp_coef, ADDDEC, DIVDEC, theta);
+                    ECN_PA(theta_1, phi_1, ADDDEC, DIVDEC, dec_param, temp_coef, dec_param.Bubb_Indicator[l][s], theta);
+                    L[l + 1][Root[t]] = theta;
+                }
+                else
+                {
+                    V[l + 1][Root[t]] = dec_param.frozen_val;
+                    cnt0++;
+                }
             }
             l = l + 1;
             s = 2 * s;
+            if (cnt0 == SZc1)
+            {
+                Roots[l][s] = true;
+            }
             if (l == n)
             {
                 Roots[n][s] = true;
@@ -592,7 +605,7 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
     }
 }
 
-void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
+void PoAwN::decoding::decode_SC_bubble_gen(const decoder_parameters &dec_param,
                                 const vector<vector<uint16_t>> &ADDDEC,
                                 const vector<vector<uint16_t>> &DIVDEC,
                                 const vector<vector<uint16_t>> &MULDEC,
@@ -701,5 +714,30 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
     for (uint16_t i = 0; i < dec_param.K; i++)
     {
         info_sec_rec[i] = V[n][dec_param.reliab_sequence[i]];
+    }
+}
+void PoAwN::decoding::frozen_lay_pos(const decoder_parameters dec_param, vector<vector<uint16_t>> &ucap)
+{
+    ucap.resize(dec_param.n + 1, vector<uint16_t>(dec_param.N, dec_param.MxUS));
+    for (int i = dec_param.N - 1; i >= dec_param.K; i--)
+        ucap[dec_param.n][dec_param.reliab_sequence[i]] = dec_param.frozen_val;
+    uint16_t i1, i2;
+    for (int l = dec_param.n; l > 0; l--)
+    {
+        int sz1 = dec_param.clusts_CNs[l - 1].size();
+        for (int s = 0; s < sz1; s++)
+        {
+            int sz2 = dec_param.clusts_CNs[l - 1][s].size();
+            for (int k = 0; k < sz2; k++)
+            {
+                i1 = dec_param.clusts_CNs[l - 1][s][k];
+                i2 = dec_param.clusts_VNs[l - 1][s][k];
+                if (ucap[l][i1] == dec_param.frozen_val && ucap[l][i2] == dec_param.frozen_val)
+                {
+                    ucap[l - 1][i1] = dec_param.frozen_val;
+                    ucap[l - 1][i2] = dec_param.frozen_val;
+                }
+            }
+        }
     }
 }

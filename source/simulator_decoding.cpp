@@ -25,8 +25,6 @@ using std::stoi;
 using std::string;
 using std::vector;
 
-
-
 int main(int argc, char *argv[])
 {
 
@@ -76,6 +74,30 @@ int main(int argc, char *argv[])
     decoder_parameters dec_param(code_param, offset, nm, nL, nH, nb, Zc, nopM);
     LoadBubblesIndcatorlists(dec_param, EbN0, Pt);
 
+    vector<vector<std::array<int, 2>>> ns0(n);
+    vector<vector<uint16_t>> ns(n);
+
+
+    for (int i = 0; i < n; i++)
+    {
+        ns0[i].resize(1 << i);
+        ns[i].resize(1<<i);
+        for (int j = 0; j < 1 << i; j++)
+        {
+            ns0[i][j].fill(0);
+            for (int k = 0; k < dec_param.Bubb_Indicator[i][j][0].size(); k++)
+            {
+                if (dec_param.Bubb_Indicator[i][j][0][k]+1 > ns0[i][j][0])
+                    ns0[i][j][0] = dec_param.Bubb_Indicator[i][j][0][k] + 1;
+                if (dec_param.Bubb_Indicator[i][j][1][k]+1 > ns0[i][j][1])
+                    ns0[i][j][1] = dec_param.Bubb_Indicator[i][j][1][k] + 1;
+            }
+            ns[i][j]=std::max(ns0[i][j][0], ns0[i][j][1]);
+        }
+    }
+
+    
+
     dec_param.Roots_V.resize(n + 1);
     dec_param.Roots_indices.resize(n);
     dec_param.clusts_CNs.resize(n);
@@ -112,6 +134,7 @@ int main(int argc, char *argv[])
                 dec_param.Roots_indices[l][s][t] = s * sz1 + t;
         }
     }
+    frozen_lay_pos(dec_param, dec_param.ucap);
 
     CCSK_seq ccsk_seq;
     vector<vector<uint16_t>> CCSK_rotated_codes(q, vector<uint16_t>());

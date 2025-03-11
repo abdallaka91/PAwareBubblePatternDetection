@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
         else if (code_param.sig_mod == "CCSK_NB")
             EncodeChanGF_CCSK(dec_param, table, EbN0, CCSK_rotated_codes, L[0], KSYMB);
 
-        decode_SC(dec_param, table.ADDDEC, table.MULDEC, table.DIVDEC, L, info_sec_rec, Bt);
+            decode_SC_bubble_gen(dec_param, table.ADDDEC, table.MULDEC, table.DIVDEC, L, info_sec_rec, Bt);
 
         for (uint16_t i = 0; i < dec_param.K; i++)
         {
