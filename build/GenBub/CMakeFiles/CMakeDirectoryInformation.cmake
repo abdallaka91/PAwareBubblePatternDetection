@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/GenBub")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

@@ -18,41 +18,38 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
 endif()
 
+ set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/source)
 
 
-# Set source directory
-set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/source)
-add_executable(Simul
-    ${SOURCE_DIR}/simulator_decoding.cpp
-    ${SOURCE_DIR}/GF_tools.cpp
-    ${SOURCE_DIR}/init.cpp
-    ${SOURCE_DIR}/tools.cpp
-    ${SOURCE_DIR}/Decoder_functions.cpp
-    ${SOURCE_DIR}/channel.cpp
-)
 
-# # Option to choose the main file
-# option(USE_DECODING "Build with simulator_decoding.cpp" ON) # use cmake -B build -DUSE_DECODING=ON
-
-# # Set the main file and executable name based on the option
-# if(USE_DECODING)
-#     set(MAIN_FILE ${SOURCE_DIR}/simulator_decoding.cpp)
-#     set(EXEC_NAME "Simul") # Executable name when using simulator_decoding.cpp
-# else()
-#     set(MAIN_FILE ${SOURCE_DIR}/simulator_bubble_gen.cpp)
-#     set(EXEC_NAME "GenBub") # Executable name when using simulator_bubble_gen.cpp
-# endif()
-
-# # Add the executable
-# add_executable(${EXEC_NAME}
-#     ${MAIN_FILE}
+# add_executable(Simul
+#     ${SOURCE_DIR}/simulator_bubble_gen.cpp
 #     ${SOURCE_DIR}/GF_tools.cpp
 #     ${SOURCE_DIR}/init.cpp
 #     ${SOURCE_DIR}/tools.cpp
 #     ${SOURCE_DIR}/Decoder_functions.cpp
 #     ${SOURCE_DIR}/channel.cpp
 # )
-target_compile_options(Simul PUBLIC -march=native -mtune=native -ffast-math)
+
+option(USE_DECODING "Build with simulator_decoding.cpp" ON) # use cmake -B build -DUSE_DECODING=ON
+
+if(USE_DECODING)
+    set(MAIN_FILE ${SOURCE_DIR}/simulator_decoding.cpp)
+    set(EXEC_NAME "Simul") # Executable name when using simulator_decoding.cpp
+else()
+    set(MAIN_FILE ${SOURCE_DIR}/simulator_bubble_gen.cpp)
+    set(EXEC_NAME "GenBub") # Executable name when using simulator_bubble_gen.cpp
+endif()
+
+add_executable(${EXEC_NAME}
+    ${MAIN_FILE}
+    ${SOURCE_DIR}/GF_tools.cpp
+    ${SOURCE_DIR}/init.cpp
+    ${SOURCE_DIR}/tools.cpp
+    ${SOURCE_DIR}/Decoder_functions.cpp
+    ${SOURCE_DIR}/channel.cpp
+)
+target_compile_options(${EXEC_NAME} PUBLIC -march=native -mtune=native -ffast-math)
 
 # Include header files
 include_directories(${CMAKE_SOURCE_DIR}/include)

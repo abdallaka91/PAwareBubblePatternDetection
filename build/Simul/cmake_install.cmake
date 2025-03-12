@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/Simul/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build
+CMAKE_BINARY_DIR = /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/GenBub
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/CMakeFiles /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/GenBub/CMakeFiles /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/GenBub//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/GenBub/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Simul
+# Target rules for targets named GenBub
 
 # Build rule for target.
-Simul: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Simul
-.PHONY : Simul
+GenBub: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GenBub
+.PHONY : GenBub
 
 # fast build rule for target.
-Simul/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/build
-.PHONY : Simul/fast
+GenBub/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/build
+.PHONY : GenBub/fast
 
 source/Decoder_functions.o: source/Decoder_functions.cpp.o
 .PHONY : source/Decoder_functions.o
 
 # target to build an object file
 source/Decoder_functions.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/Decoder_functions.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/Decoder_functions.cpp.o
 .PHONY : source/Decoder_functions.cpp.o
 
 source/Decoder_functions.i: source/Decoder_functions.cpp.i
@@ -142,7 +142,7 @@ source/Decoder_functions.i: source/Decoder_functions.cpp.i
 
 # target to preprocess a source file
 source/Decoder_functions.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/Decoder_functions.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/Decoder_functions.cpp.i
 .PHONY : source/Decoder_functions.cpp.i
 
 source/Decoder_functions.s: source/Decoder_functions.cpp.s
@@ -150,7 +150,7 @@ source/Decoder_functions.s: source/Decoder_functions.cpp.s
 
 # target to generate assembly for a file
 source/Decoder_functions.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/Decoder_functions.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/Decoder_functions.cpp.s
 .PHONY : source/Decoder_functions.cpp.s
 
 source/GF_tools.o: source/GF_tools.cpp.o
@@ -158,7 +158,7 @@ source/GF_tools.o: source/GF_tools.cpp.o
 
 # target to build an object file
 source/GF_tools.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/GF_tools.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/GF_tools.cpp.o
 .PHONY : source/GF_tools.cpp.o
 
 source/GF_tools.i: source/GF_tools.cpp.i
@@ -166,7 +166,7 @@ source/GF_tools.i: source/GF_tools.cpp.i
 
 # target to preprocess a source file
 source/GF_tools.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/GF_tools.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/GF_tools.cpp.i
 .PHONY : source/GF_tools.cpp.i
 
 source/GF_tools.s: source/GF_tools.cpp.s
@@ -174,7 +174,7 @@ source/GF_tools.s: source/GF_tools.cpp.s
 
 # target to generate assembly for a file
 source/GF_tools.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/GF_tools.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/GF_tools.cpp.s
 .PHONY : source/GF_tools.cpp.s
 
 source/channel.o: source/channel.cpp.o
@@ -182,7 +182,7 @@ source/channel.o: source/channel.cpp.o
 
 # target to build an object file
 source/channel.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/channel.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/channel.cpp.o
 .PHONY : source/channel.cpp.o
 
 source/channel.i: source/channel.cpp.i
@@ -190,7 +190,7 @@ source/channel.i: source/channel.cpp.i
 
 # target to preprocess a source file
 source/channel.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/channel.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/channel.cpp.i
 .PHONY : source/channel.cpp.i
 
 source/channel.s: source/channel.cpp.s
@@ -198,7 +198,7 @@ source/channel.s: source/channel.cpp.s
 
 # target to generate assembly for a file
 source/channel.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/channel.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/channel.cpp.s
 .PHONY : source/channel.cpp.s
 
 source/init.o: source/init.cpp.o
@@ -206,7 +206,7 @@ source/init.o: source/init.cpp.o
 
 # target to build an object file
 source/init.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/init.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/init.cpp.o
 .PHONY : source/init.cpp.o
 
 source/init.i: source/init.cpp.i
@@ -214,7 +214,7 @@ source/init.i: source/init.cpp.i
 
 # target to preprocess a source file
 source/init.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/init.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/init.cpp.i
 .PHONY : source/init.cpp.i
 
 source/init.s: source/init.cpp.s
@@ -222,39 +222,39 @@ source/init.s: source/init.cpp.s
 
 # target to generate assembly for a file
 source/init.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/init.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/init.cpp.s
 .PHONY : source/init.cpp.s
 
-source/simulator_decoding.o: source/simulator_decoding.cpp.o
-.PHONY : source/simulator_decoding.o
+source/simulator_bubble_gen.o: source/simulator_bubble_gen.cpp.o
+.PHONY : source/simulator_bubble_gen.o
 
 # target to build an object file
-source/simulator_decoding.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o
-.PHONY : source/simulator_decoding.cpp.o
+source/simulator_bubble_gen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/simulator_bubble_gen.cpp.o
+.PHONY : source/simulator_bubble_gen.cpp.o
 
-source/simulator_decoding.i: source/simulator_decoding.cpp.i
-.PHONY : source/simulator_decoding.i
+source/simulator_bubble_gen.i: source/simulator_bubble_gen.cpp.i
+.PHONY : source/simulator_bubble_gen.i
 
 # target to preprocess a source file
-source/simulator_decoding.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_decoding.cpp.i
-.PHONY : source/simulator_decoding.cpp.i
+source/simulator_bubble_gen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/simulator_bubble_gen.cpp.i
+.PHONY : source/simulator_bubble_gen.cpp.i
 
-source/simulator_decoding.s: source/simulator_decoding.cpp.s
-.PHONY : source/simulator_decoding.s
+source/simulator_bubble_gen.s: source/simulator_bubble_gen.cpp.s
+.PHONY : source/simulator_bubble_gen.s
 
 # target to generate assembly for a file
-source/simulator_decoding.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_decoding.cpp.s
-.PHONY : source/simulator_decoding.cpp.s
+source/simulator_bubble_gen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/simulator_bubble_gen.cpp.s
+.PHONY : source/simulator_bubble_gen.cpp.s
 
 source/tools.o: source/tools.cpp.o
 .PHONY : source/tools.o
 
 # target to build an object file
 source/tools.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/tools.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/tools.cpp.o
 .PHONY : source/tools.cpp.o
 
 source/tools.i: source/tools.cpp.i
@@ -262,7 +262,7 @@ source/tools.i: source/tools.cpp.i
 
 # target to preprocess a source file
 source/tools.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/tools.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/tools.cpp.i
 .PHONY : source/tools.cpp.i
 
 source/tools.s: source/tools.cpp.s
@@ -270,7 +270,7 @@ source/tools.s: source/tools.cpp.s
 
 # target to generate assembly for a file
 source/tools.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/tools.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GenBub.dir/build.make CMakeFiles/GenBub.dir/source/tools.cpp.s
 .PHONY : source/tools.cpp.s
 
 # Help Target
@@ -281,7 +281,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Simul"
+	@echo "... GenBub"
 	@echo "... source/Decoder_functions.o"
 	@echo "... source/Decoder_functions.i"
 	@echo "... source/Decoder_functions.s"
@@ -294,9 +294,9 @@ help:
 	@echo "... source/init.o"
 	@echo "... source/init.i"
 	@echo "... source/init.s"
-	@echo "... source/simulator_decoding.o"
-	@echo "... source/simulator_decoding.i"
-	@echo "... source/simulator_decoding.s"
+	@echo "... source/simulator_bubble_gen.o"
+	@echo "... source/simulator_bubble_gen.i"
+	@echo "... source/simulator_bubble_gen.s"
 	@echo "... source/tools.o"
 	@echo "... source/tools.i"
 	@echo "... source/tools.s"
