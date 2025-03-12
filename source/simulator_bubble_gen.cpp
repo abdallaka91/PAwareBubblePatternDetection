@@ -160,8 +160,7 @@ int main(int argc, char *argv[])
         else
             EncodeChanBPSK_BinCCSK(dec_param, table, EbN0, table.BINDEC, L[0], KSYMB);
 
-
-            decode_SC_bubble_gen(dec_param, table.ADDDEC, table.MULDEC, table.DIVDEC, L, info_sec_rec, Bt);
+        decode_SC_bubble_gen(dec_param, table.ADDDEC, table.MULDEC, table.DIVDEC, L, info_sec_rec, Bt);
 
         for (uint16_t i = 0; i < dec_param.K; i++)
         {
@@ -205,6 +204,7 @@ int main(int argc, char *argv[])
     cout << "\rSNR: " << EbN0 << " dB, FER = " << FER << "/" << (float)i0 << " = " << (float)FER / (float)i0 << std::flush;
     cout << endl;
     newsim = true;
+    bool newclust = false;
     std::ostringstream fname;
     string bubble_direct;
     if (code_param.sig_mod == "BPSK")
@@ -227,14 +227,17 @@ int main(int argc, char *argv[])
     {
         for (int j = 0; j < 1u << i; j++)
         {
-            succ_writing = appendToFile(fname.str(), Cs[i][j], newsim);
+            succ_writing = appendToFile(fname.str(), Cs[i][j], newsim, newclust);
             newsim = false;
+            newclust = false;
         }
+        newclust = true;
     }
     if (succ_writing)
         std::cout << "Cs Matrices written to: " << filename << std::endl;
 
     newsim = true;
+    newclust = false;
     fname.str("");
     fname.clear();
 
@@ -248,9 +251,11 @@ int main(int argc, char *argv[])
     {
         for (int j = 0; j < 1u << i; j++)
         {
-            succ_writing = appendToFile(fname.str(), Bt[i][j], newsim);
+            succ_writing = appendToFile(fname.str(), Bt[i][j], newsim, newclust);
             newsim = false;
+            newclust = false;
         }
+        newclust = true;
     }
     if (succ_writing)
         std::cout << "Bt Matrices written to: " << filename << std::endl;
