@@ -154,9 +154,12 @@ int main(int argc, char *argv[])
 
         vector<vector<uint16_t>> KBIN;
         if (code_param.sig_mod == "CCSK_BIN")
-            EncodeChanBinCCSK(dec_param, table, EbN0, CCSK_rotated_codes, L[0], KSYMB);
+            EncodeChanBPSK_BinCCSK(dec_param, table, EbN0, CCSK_rotated_codes, L[0], KSYMB);
         else if (code_param.sig_mod == "CCSK_NB")
             EncodeChanGF_CCSK(dec_param, table, EbN0, CCSK_rotated_codes, L[0], KSYMB);
+        else
+            EncodeChanBPSK_BinCCSK(dec_param, table, EbN0, table.BINDEC, L[0], KSYMB);
+
 
             decode_SC_bubble_gen(dec_param, table.ADDDEC, table.MULDEC, table.DIVDEC, L, info_sec_rec, Bt);
 

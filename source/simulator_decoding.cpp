@@ -77,26 +77,23 @@ int main(int argc, char *argv[])
     vector<vector<std::array<int, 2>>> ns0(n);
     vector<vector<uint16_t>> ns(n);
 
-
     for (int i = 0; i < n; i++)
     {
         ns0[i].resize(1 << i);
-        ns[i].resize(1<<i);
+        ns[i].resize(1 << i);
         for (int j = 0; j < 1 << i; j++)
         {
             ns0[i][j].fill(0);
             for (int k = 0; k < dec_param.Bubb_Indicator[i][j][0].size(); k++)
             {
-                if (dec_param.Bubb_Indicator[i][j][0][k]+1 > ns0[i][j][0])
+                if (dec_param.Bubb_Indicator[i][j][0][k] + 1 > ns0[i][j][0])
                     ns0[i][j][0] = dec_param.Bubb_Indicator[i][j][0][k] + 1;
-                if (dec_param.Bubb_Indicator[i][j][1][k]+1 > ns0[i][j][1])
+                if (dec_param.Bubb_Indicator[i][j][1][k] + 1 > ns0[i][j][1])
                     ns0[i][j][1] = dec_param.Bubb_Indicator[i][j][1][k] + 1;
             }
-            ns[i][j]=std::max(ns0[i][j][0], ns0[i][j][1]);
+            ns[i][j] = std::max(ns0[i][j][0], ns0[i][j][1]);
         }
     }
-
-    
 
     dec_param.Roots_V.resize(n + 1);
     dec_param.Roots_indices.resize(n);
@@ -157,9 +154,11 @@ int main(int argc, char *argv[])
 
         vector<vector<uint16_t>> KBIN;
         if (code_param.sig_mod == "CCSK_BIN")
-            EncodeChanBinCCSK(dec_param, table, EbN0, CCSK_rotated_codes, L[0], KSYMB);
+            EncodeChanBPSK_BinCCSK(dec_param, table, EbN0, CCSK_rotated_codes, L[0], KSYMB);
         else if (code_param.sig_mod == "CCSK_NB")
             EncodeChanGF_CCSK(dec_param, table, EbN0, CCSK_rotated_codes, L[0], KSYMB);
+        else
+            EncodeChanBPSK_BinCCSK(dec_param, table, EbN0, table.BINDEC, L[0], KSYMB);
 
         decode_SC(dec_param, table.ADDDEC, table.MULDEC, table.DIVDEC, L, info_sec_rec);
 

@@ -23,30 +23,32 @@ using std::stoi;
 using std::string;
 using std::vector;
 
-void PoAwN::channel::EncodeChanBinCCSK(const decoder_parameters &dec_param,
+void PoAwN::channel::EncodeChanBPSK_BinCCSK(const decoder_parameters &dec_param,
                                        const table_GF &table,
                                        const float SNR,
-                                       const vector<vector<uint16_t>> &CCSK_rotated_codes,
+                                       const vector<vector<uint16_t>> &bin_table,
                                        vector<decoder_t> &chan_LLR_sorted,
                                        vector<uint16_t> &KSYMB)
 {
     uint16_t N = dec_param.N, K = dec_param.K, q = dec_param.q;
     uint16_t nm = dec_param.nm;
-    float sigma = sqrt(1.0 / (pow(10, SNR / 10.0)));// N0/2 or N0?
+    float sigma = sqrt(1.0 / 2*(pow(10, SNR / 10.0)));// N0/2 or N0?
     vector<uint16_t> NSYMB(N);
     vector<vector<uint16_t>> KBIN(K), NBIN;
     NBIN.resize(N, vector<uint16_t>());
-    vector<vector<softdata_t>> noisy_sig(N, vector<softdata_t>(q, (softdata_t)0.0));
+    vector<vector<softdata_t>> noisy_sig(N, vector<softdata_t>(bin_table[0].size(), (softdata_t)0.0));
     vector<uint16_t> u_symb(N, 0);
-    RandomBinaryGenerator(K, q, CCSK_rotated_codes, 0, 0, KBIN, KSYMB);
+    RandomBinaryGenerator(K, q, bin_table, 0, 0, KBIN, KSYMB);
     for (int i = 0; i < K; i++)
         u_symb[dec_param.reliab_sequence[i]] = KSYMB[i];
     Encoder(table.ADDDEC, table.MULDEC, dec_param.polar_coeff, u_symb, NSYMB);
+    // vector<uint16_t> temp=NSYMB;
+    // inv_Encoder(table.ADDDEC, table.DIVDEC, dec_param.polar_coeff, NSYMB, temp);
     for (int i = 0; i < int(NSYMB.size()); i++)
-        NBIN[i] = CCSK_rotated_codes[NSYMB[i]];
+        NBIN[i] = bin_table[NSYMB[i]];
     awgn_channel_noise(NBIN, sigma, 0, 0, noisy_sig);
     vector<vector<softdata_t>> chan_LLR(N, vector<softdata_t>(q, 0));
-    Channel_LLR(noisy_sig, CCSK_rotated_codes, q, sigma, chan_LLR);
+    Channel_LLR(noisy_sig, bin_table, q, sigma, chan_LLR);
     LLR_sort(chan_LLR, nm, chan_LLR_sorted);
 }
 

@@ -78,7 +78,7 @@ void PoAwN::tools::awgn_channel_noise(const vector<vector<uint16_t>> &NBIN,
     vector<vector<softdata_t>> noise_table;
     noise_table.resize(N, vector<softdata_t>(q1, 0));
     AWGN_gen(SEED, sigma, repeatable, SEED, noise_table);
-        for (int i = 0; i < N; i++)
+    for (int i = 0; i < N; i++)
         for (int j = 0; j < q1; j++)
         {
             noisy_sig[i][j] = (NBIN[i][j] == 0) ? 1 : -1;
@@ -115,3 +115,33 @@ void PoAwN::tools::Encoder(const vector<vector<uint16_t>> &ADDDEC, const vector<
     for (uint16_t i = 0; i < N; ++i)
         NSYMB[i] = temp_symb[i][n];
 }
+
+// void PoAwN::tools::inv_Encoder(const vector<vector<uint16_t>> &ADDDEC, const vector<vector<uint16_t>> &DIVDEC,
+//                                const vector<vector<uint16_t>> &polar_coeff,
+//                                const vector<uint16_t> NSYMB, vector<uint16_t> &u_symb)
+// {
+//     uint16_t N = NSYMB.size();
+//     uint16_t n = log2(N);
+//     vector<vector<uint16_t>> temp_symb(N, vector<uint16_t>(n + 1, 0));
+//     for (uint16_t i = 0; i < N; ++i)
+//         temp_symb[i][n] = NSYMB[i];
+
+//     uint16_t a, b;
+//     uint16_t tmp_add;
+//     uint16_t tmp_div;
+//     for (int l = n - 1; l >= 0; l--)
+//     {
+//         for (uint16_t k = 0; k < N / 2; k++)
+//         {
+//             uint16_t pw1 = pow(2, l );
+//             a = 2 * k - k % pw1;
+//             b = pw1 + 2 * k - k % pw1;
+//             tmp_div = DIVDEC[temp_symb[b][l + 1]][polar_coeff[l][k]];
+//             tmp_add = ADDDEC[temp_symb[a][l + 1]][tmp_div];
+//             temp_symb[a][l] = tmp_add;
+//             temp_symb[b][l] = tmp_div;
+//         }
+//     }
+//     for (uint16_t i = 0; i < N; ++i)
+//         u_symb[i] = temp_symb[i][0];
+// }

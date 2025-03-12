@@ -38,7 +38,9 @@ namespace PoAwN
         void Encoder(const vector<vector<uint16_t>> &ADDDEC, const vector<vector<uint16_t>> &MULDEC,
                      const vector<vector<uint16_t>> &polar_coeff,
                      const vector<uint16_t> u_symb, vector<uint16_t> &NSYMB);
-
+        // void inv_Encoder(const vector<vector<uint16_t>> &ADDDEC, const vector<vector<uint16_t>> &DIVDEC,
+        //                                const vector<vector<uint16_t>> &polar_coeff,
+        //                                const vector<uint16_t> NSYMB, vector<uint16_t> &u_symb);
 
     } // namespace tools
 } // namespace PoAwN

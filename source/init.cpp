@@ -14,7 +14,7 @@ void PoAwN::init::LoadCode(PoAwN::structures::base_code_t &code, float SNR)
 
     std::ostringstream fname;
     std::string mat_direct;
-    if (code.sig_mod == "bpsk")
+    if (code.sig_mod == "BPSK")
         mat_direct = "./matrices/bpsk/N";
     else if (code.sig_mod == "CCSK_BIN")
         mat_direct = "./matrices/ccsk_bin/N";
@@ -41,7 +41,7 @@ void PoAwN::init::LoadCode(PoAwN::structures::base_code_t &code, float SNR)
         code.reliab_sequence[i] = tmp;
     }
 
-    if (code.sig_mod == "bpsk")
+    if (code.sig_mod == "BPSK")
     {
         code.polar_coeff.resize(code.n, std::vector<uint16_t>(code.N / 2));
         // Read polar coefficients
@@ -74,7 +74,7 @@ void PoAwN::init::LoadBubblesIndcatorlists(PoAwN::structures::decoder_parameters
     uint16_t n = dec.n, nH = dec.nH, nL = dec.nL;
     std::ostringstream fname;
     std::string mat_direct;
-    if (dec.sig_mod == "bpsk")
+    if (dec.sig_mod == "BPSK")
         mat_direct = "./BubblesPattern/bpsk/N";
     else if (dec.sig_mod == "CCSK_BIN")
         mat_direct = "./BubblesPattern/ccsk_bin/N";

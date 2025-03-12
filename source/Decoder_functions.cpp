@@ -483,8 +483,8 @@ void PoAwN::decoding::VN_update(const decoder_t &theta_1,
 
 void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
                                 const vector<vector<uint16_t>> &ADDDEC,
-                                const vector<vector<uint16_t>> &DIVDEC,
                                 const vector<vector<uint16_t>> &MULDEC,
+                                const vector<vector<uint16_t>> &DIVDEC,
                                 vector<vector<decoder_t>> &L,
                                 vector<uint16_t> &info_sec_rec)
 {
@@ -499,6 +499,9 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
 
     for (uint16_t i = 0; i < dec_param.K; i++)
         V[n][dec_param.reliab_sequence[i]] = dec_param.MxUS;
+
+    uint16_t phi_gf_p, theta_gf;
+    decoder_t theta_t({0}, {0});
 
     while (l > -1)
     {
@@ -516,7 +519,7 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
                 {
                     l1 = l + 1;
                     i1 = Root[t], i2 = Root[t + SZc1], i3 = dec_param.coefs_id[l][s][t];
-                    temp_coef = dec_param.polar_coeff[l][i3];
+                    temp_coef = dec_param.polar_coeff[n - l - 1][i3];
                     V[l][i1] = ADDDEC[V[l1][i1]][V[l1][i2]];
                     V[l][i2] = MULDEC[V[l1][i2]][temp_coef];
                 }
@@ -528,6 +531,7 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
                 s /= 2;
             }
         }
+
         else if (Roots[l + 1][2 * s])
         {
             Root = dec_param.Roots_indices[l][s];
@@ -539,11 +543,16 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
                 theta_1 = L[l][Root[t]];
                 phi_1 = L[l][Root[t + SZc1]];
                 i3 = dec_param.coefs_id[l][s][t];
-                temp_coef = dec_param.polar_coeff[l][i3];
+                temp_coef = dec_param.polar_coeff[n - l - 1][i3];
                 decoder_t phi;
                 hard_decsion = V[l + 1][Root[t]];
-                VN_update(theta_1, phi_1, ADDDEC, DIVDEC, dec_param.nm,
-                          temp_coef, hard_decsion, dec_param.q, dec_param.offset, phi);
+                if (l != n - 1)
+                    VN_update(theta_1, phi_1, ADDDEC, DIVDEC, dec_param.nm,
+                              temp_coef, hard_decsion, dec_param.q, dec_param.offset, phi);
+                else
+                    VN_update(theta_1, phi_1, ADDDEC, DIVDEC, 1,
+                              temp_coef, hard_decsion, dec_param.q, dec_param.offset, phi);
+
                 L[l + 1][Root[t + SZc1]] = phi;
             }
             l += 1;
@@ -557,6 +566,7 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
                     break;
             }
         }
+
         else
         {
             Root = dec_param.Roots_indices[l][s];
@@ -569,14 +579,24 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
                 if (dec_param.ucap[l + 1][Root[t]] != dec_param.frozen_val)
                 {
                     i3 = dec_param.coefs_id[l][s][t];
-                    theta_1 = L[l][Root[t]];
-                    phi_1 = L[l][Root[t + SZc1]];
-                    temp_coef = dec_param.polar_coeff[l][i3];
-                    decoder_t theta;
-                    // ECN_EMS(theta_1, phi_1, ADDDEC, DIVDEC, dec_param.nm, dec_param.q, temp_coef, theta);
-                    //  ECN_AEMS_bubble(theta_1, phi_1, dec_param, temp_coef, ADDDEC, DIVDEC, theta);
-                    ECN_PA(theta_1, phi_1, ADDDEC, DIVDEC, dec_param, temp_coef, dec_param.Bubb_Indicator[l][s], theta);
-                    L[l + 1][Root[t]] = theta;
+                    temp_coef = dec_param.polar_coeff[n - l - 1][i3];
+                    if (l < n - 1)
+                    {
+                        theta_1 = L[l][Root[t]];
+                        phi_1 = L[l][Root[t + SZc1]];
+
+                        decoder_t theta;
+                        // ECN_EMS(theta_1, phi_1, ADDDEC, DIVDEC, dec_param.nm, dec_param.q, temp_coef, theta);
+                        ECN_PA(theta_1, phi_1, ADDDEC, DIVDEC, dec_param, temp_coef, dec_param.Bubb_Indicator[l][s], theta);
+                        L[l + 1][Root[t]] = theta;
+                    }
+                    else
+                    {
+                        phi_gf_p = DIVDEC[L[l][Root[t + SZc1]].intrinsic_GF[0]][temp_coef];
+                        theta_gf = L[l][Root[t]].intrinsic_GF[0];
+                        theta_t.intrinsic_GF[0] = ADDDEC[theta_gf][phi_gf_p];
+                        L[l + 1][Root[t]] = theta_t;
+                    }
                 }
                 else
                 {
@@ -606,12 +626,12 @@ void PoAwN::decoding::decode_SC(const decoder_parameters &dec_param,
 }
 
 void PoAwN::decoding::decode_SC_bubble_gen(const decoder_parameters &dec_param,
-                                const vector<vector<uint16_t>> &ADDDEC,
-                                const vector<vector<uint16_t>> &DIVDEC,
-                                const vector<vector<uint16_t>> &MULDEC,
-                                vector<vector<decoder_t>> &L,
-                                vector<uint16_t> &info_sec_rec,
-                                vector<vector<vector<vector<uint16_t>>>> &Bt)
+                                           const vector<vector<uint16_t>> &ADDDEC,
+                                           const vector<vector<uint16_t>> &MULDEC,
+                                           const vector<vector<uint16_t>> &DIVDEC,
+                                           vector<vector<decoder_t>> &L,
+                                           vector<uint16_t> &info_sec_rec,
+                                           vector<vector<vector<vector<uint16_t>>>> &Bt)
 {
     vector<vector<bool>> Roots = dec_param.Roots_V;
     uint16_t MxUS = dec_param.MxUS, n = dec_param.n, N = dec_param.N;
@@ -641,7 +661,7 @@ void PoAwN::decoding::decode_SC_bubble_gen(const decoder_parameters &dec_param,
                 {
                     l1 = l + 1;
                     i1 = Root[t], i2 = Root[t + SZc1], i3 = dec_param.coefs_id[l][s][t];
-                    temp_coef = dec_param.polar_coeff[l][i3];
+                    temp_coef = dec_param.polar_coeff[n - l - 1][i3];
                     V[l][i1] = ADDDEC[V[l1][i1]][V[l1][i2]];
                     V[l][i2] = MULDEC[V[l1][i2]][temp_coef];
                 }
@@ -664,7 +684,7 @@ void PoAwN::decoding::decode_SC_bubble_gen(const decoder_parameters &dec_param,
                 theta_1 = L[l][Root[t]];
                 phi_1 = L[l][Root[t + SZc1]];
                 i3 = dec_param.coefs_id[l][s][t];
-                temp_coef = dec_param.polar_coeff[l][i3];
+                temp_coef = dec_param.polar_coeff[n - l - 1][i3];
                 decoder_t phi;
                 hard_decsion = V[l + 1][Root[t]];
                 VN_update(theta_1, phi_1, ADDDEC, DIVDEC, dec_param.nm,
@@ -693,11 +713,9 @@ void PoAwN::decoding::decode_SC_bubble_gen(const decoder_parameters &dec_param,
                 i3 = dec_param.coefs_id[l][s][t];
                 theta_1 = L[l][Root[t]];
                 phi_1 = L[l][Root[t + SZc1]];
-                temp_coef = dec_param.polar_coeff[l][i3];
+                temp_coef = dec_param.polar_coeff[n - l - 1][i3];
                 decoder_t theta;
-                // ECN_EMS(theta_1, phi_1, ADDDEC, DIVDEC, dec_param.nm, dec_param.q, temp_coef, theta);
                 ECN_EMS_L(theta_1, phi_1, ADDDEC, DIVDEC, dec_param, temp_coef, theta, Bt[l][s]);
-                // ECN_AEMS_bubble(theta_1, phi_1, dec_param, temp_coef, ADDDEC, DIVDEC, theta);
                 L[l + 1][Root[t]] = theta;
             }
             l = l + 1;
