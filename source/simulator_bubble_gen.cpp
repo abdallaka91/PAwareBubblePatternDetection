@@ -77,9 +77,7 @@ int main(int argc, char *argv[])
     cout << "Simulation starts..." << endl;
 
     decoder_parameters dec_param(code_param, offset, nm, nL, nH, nb, Zc, nopM);
-
-    float sigma = sqrt(1.0 / (pow(10, EbN0 / 10.0)));
-
+    
     dec_param.Roots_V.resize(n + 1);
     dec_param.Roots_indices.resize(n);
     dec_param.clusts_CNs.resize(n);
@@ -128,7 +126,7 @@ int main(int argc, char *argv[])
                 dec_param.Roots_indices[l][s][t] = s * sz1 + t;
         }
     }
-
+    frozen_lay_pos(dec_param, dec_param.ucap);
     CCSK_seq ccsk_seq;
     vector<vector<uint16_t>> CCSK_rotated_codes(q, vector<uint16_t>());
     if (code_param.sig_mod == "CCSK_BIN")
@@ -217,7 +215,7 @@ int main(int argc, char *argv[])
     // fname << "/mnt/c/Users/Abdallah Abdallah/Desktop/BubblePattern/"
     //       << "N" << code_param.N << "_GF" << code_param.q
     //       << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << ".txt";
-    fname << bubble_direct << code_param.N << "/CotributionMatrices/" << "bubbles_N" << code_param.N << "_GF" << code_param.q
+    fname << bubble_direct << code_param.N << "/CotributionMatrices/" << "bubbles_N" << code_param.N<< "_K" << code_param.K << "_GF" << code_param.q
           << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Pt"
           << std::fixed << std::setprecision(2) << Pt << "_Cs_mat.txt";
 
@@ -241,7 +239,7 @@ int main(int argc, char *argv[])
     fname.str("");
     fname.clear();
 
-    fname << bubble_direct << code_param.N << "/CotributionMatrices/" << "bubbles_N" << code_param.N << "_GF" << code_param.q
+    fname << bubble_direct << code_param.N << "/CotributionMatrices/" << "bubbles_N" << code_param.N<< "_K" << code_param.K << "_GF" << code_param.q
           << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Pt"
           << std::fixed << std::setprecision(2) << Pt << "_Bt_mat.txt";
 
@@ -263,7 +261,7 @@ int main(int argc, char *argv[])
     newsim = true;
     fname.str("");
     fname.clear();
-    fname << bubble_direct << code_param.N << "/bubbles_N" << code_param.N << "_GF" << code_param.q
+    fname << bubble_direct << code_param.N << "/bubbles_N" << code_param.N << "_K" << code_param.K<< "_GF" << code_param.q
           << "_SNR" << std::fixed << std::setprecision(2) << EbN0 << "_" << dec_param.nH << "x" << dec_param.nL << "_Pt"
           << std::fixed << std::setprecision(2) << Pt << "_Bt_lsts.txt";
 
@@ -281,6 +279,7 @@ int main(int argc, char *argv[])
             for (int s = 0; s < (1u << l); s++)
             {
                 std::ostringstream lne;
+                lne << l<<" "<<s<<",  ";
                 for (int j0 = 0; j0 < nH; j0++)
                     for (int j1 = 0; j1 < nL; j1++)
                         if (Bt[l][s][j0][j1])

@@ -6,7 +6,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/Simul",
-            "args": [10000,0,"BPSK",64,64,35,18,18,18,2,1.5, 0.25],
+            "args": [
+                10000, 0, "BPSK", 64, 64, 35, 18, 18, 18, 2, 1.5, 0.08
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -19,7 +21,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "build simulator",
+            "preLaunchTask": "build simulator",  // Ensure this task is defined in tasks.json
             "logging": {
                 "engineLogging": true,
                 "trace": true,

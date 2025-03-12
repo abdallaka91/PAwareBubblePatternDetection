@@ -4,7 +4,7 @@
       {
         "label": "build simulator",
         "type": "shell",
-        "command": "cmake --build ${workspaceFolder}/build",
+        "command": "cmake --build ${workspaceFolder}/build/Simul",
         "options": {
           "env": {
             "PATH": "/usr/bin:$PATH"

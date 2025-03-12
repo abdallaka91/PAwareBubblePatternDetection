@@ -644,6 +644,8 @@ void PoAwN::decoding::decode_SC_bubble_gen(const decoder_parameters &dec_param,
 
     for (uint16_t i = 0; i < dec_param.K; i++)
         V[n][dec_param.reliab_sequence[i]] = dec_param.MxUS;
+    uint16_t phi_gf_p, theta_gf;
+    decoder_t theta_t({0}, {0});
 
     while (l > -1)
     {
@@ -708,18 +710,42 @@ void PoAwN::decoding::decode_SC_bubble_gen(const decoder_parameters &dec_param,
             SZc = Root.size();
             SZc1 = SZc >> 1;
             decoder_t phi_1, theta_1;
+            int cnt0 = 0;
             for (uint16_t t = 0; t < SZc1; t++)
             {
-                i3 = dec_param.coefs_id[l][s][t];
-                theta_1 = L[l][Root[t]];
-                phi_1 = L[l][Root[t + SZc1]];
-                temp_coef = dec_param.polar_coeff[n - l - 1][i3];
-                decoder_t theta;
-                ECN_EMS_L(theta_1, phi_1, ADDDEC, DIVDEC, dec_param, temp_coef, theta, Bt[l][s]);
-                L[l + 1][Root[t]] = theta;
+                if (dec_param.ucap[l + 1][Root[t]] != dec_param.frozen_val)
+                {
+                    i3 = dec_param.coefs_id[l][s][t];
+                    temp_coef = dec_param.polar_coeff[n - l - 1][i3];
+                    if (l < n - 1)
+                    {
+                        theta_1 = L[l][Root[t]];
+                        phi_1 = L[l][Root[t + SZc1]];
+
+                        decoder_t theta;
+                        ECN_EMS_L(theta_1, phi_1, ADDDEC, DIVDEC, dec_param, temp_coef, theta, Bt[l][s]);
+                        L[l + 1][Root[t]] = theta;
+                    }
+                    else
+                    {
+                        phi_gf_p = DIVDEC[L[l][Root[t + SZc1]].intrinsic_GF[0]][temp_coef];
+                        theta_gf = L[l][Root[t]].intrinsic_GF[0];
+                        theta_t.intrinsic_GF[0] = ADDDEC[theta_gf][phi_gf_p];
+                        L[l + 1][Root[t]] = theta_t;
+                    }
+                }
+                else
+                {
+                    V[l + 1][Root[t]] = dec_param.frozen_val;
+                    cnt0++;
+                }
             }
             l = l + 1;
             s = 2 * s;
+            if (cnt0 == SZc1)
+            {
+                Roots[l][s] = true;
+            }
             if (l == n)
             {
                 Roots[n][s] = true;

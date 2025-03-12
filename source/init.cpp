@@ -68,8 +68,8 @@ void PoAwN::init::LoadCode(PoAwN::structures::base_code_t &code, float SNR)
 }
 
 void PoAwN::init::LoadBubblesIndcatorlists(PoAwN::structures::decoder_parameters &dec,
-     const float SNR,
-      const float Pt)
+                                           const float SNR,
+                                           const float Pt)
 {
     uint16_t n = dec.n, nH = dec.nH, nL = dec.nL;
     std::ostringstream fname;
@@ -81,9 +81,9 @@ void PoAwN::init::LoadBubblesIndcatorlists(PoAwN::structures::decoder_parameters
     else
         mat_direct = "./BubblesPattern/ccsk_nb/N";
 
-    fname << mat_direct << dec.N << "/bubbles_N" << dec.N << "_GF" << dec.q
-          << "_SNR" << std::fixed << std::setprecision(2) << SNR << "_" << dec.nH << "x" <<  std::fixed << std::setprecision(2) << dec.nL << "_Pt"
-          << std::fixed << std::setprecision(2) <<Pt << "_Bt_lsts.txt";
+    fname << mat_direct << dec.N << "/bubbles_N" << dec.N << "_K" << dec.K << "_GF" << dec.q
+          << "_SNR" << std::fixed << std::setprecision(2) << SNR << "_" << dec.nH << "x" << std::fixed << std::setprecision(2) << dec.nL << "_Pt"
+          << std::fixed << std::setprecision(2) << Pt << "_Bt_lsts.txt";
     std::string filename = fname.str();
 
     std::ifstream file(filename);
@@ -104,7 +104,7 @@ void PoAwN::init::LoadBubblesIndcatorlists(PoAwN::structures::decoder_parameters
         return;
     }
 
-    int line_cnt0,  line_cnt= 0;
+    int line_cnt0, line_cnt = 0;
     dec.Bubb_Indicator.resize(n);
     for (int l = 0; l < n; l++)
     {
@@ -112,20 +112,31 @@ void PoAwN::init::LoadBubblesIndcatorlists(PoAwN::structures::decoder_parameters
         line_cnt0 = (1u << l) - 1;
         for (int s = 0; s < (1u << l); s++)
         {
-            line_cnt = line_cnt0+s;
+            line_cnt = line_cnt0 + s;
             dec.Bubb_Indicator[l][s].resize(2);
             {
                 std::istringstream iss(lines[line_cnt]);
                 std::vector<int> numbers;
                 std::string token;
+
+                // Skip the first two elements
+                int skipped = 0;
+
                 while (iss >> token)
                 {
+                    // If we have skipped the first two elements, start processing the remaining tokens
+                    if (skipped < 2)
+                    {
+                        skipped++;
+                        continue; // Skip the first two tokens
+                    }
+
                     std::string clean;
                     for (char c : token)
                         if (std::isdigit(c))
                             clean += c;
                         else if (!clean.empty())
-                        { 
+                        {
                             numbers.push_back(std::stoi(clean));
                             clean.clear();
                         }

@@ -1,0 +1,3 @@
+/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/CMakeFiles/Simul.dir
+/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/CMakeFiles/edit_cache.dir
+/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/CMakeFiles/rebuild_cache.dir

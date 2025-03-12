@@ -1,3 +1,0 @@
-/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/GenBub/CMakeFiles/GenBub.dir
-/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/GenBub/CMakeFiles/edit_cache.dir
-/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/GenBub/CMakeFiles/rebuild_cache.dir

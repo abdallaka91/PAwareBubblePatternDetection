@@ -32,7 +32,7 @@ void PoAwN::channel::EncodeChanBPSK_BinCCSK(const decoder_parameters &dec_param,
 {
     uint16_t N = dec_param.N, K = dec_param.K, q = dec_param.q;
     uint16_t nm = dec_param.nm;
-    float sigma = sqrt(1.0 / 2*(pow(10, SNR / 10.0)));// N0/2 or N0?
+    float sigma = sqrt(1.0 / (pow(10, SNR / 10.0)));// N0/2 or N0?
     vector<uint16_t> NSYMB(N);
     vector<vector<uint16_t>> KBIN(K), NBIN;
     NBIN.resize(N, vector<uint16_t>());
