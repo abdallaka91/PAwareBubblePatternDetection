@@ -225,29 +225,29 @@ source/init.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/init.cpp.s
 .PHONY : source/init.cpp.s
 
-source/simulator_decoding.o: source/simulator_decoding.cpp.o
-.PHONY : source/simulator_decoding.o
+source/simulator_bubble_gen.o: source/simulator_bubble_gen.cpp.o
+.PHONY : source/simulator_bubble_gen.o
 
 # target to build an object file
-source/simulator_decoding.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o
-.PHONY : source/simulator_decoding.cpp.o
+source/simulator_bubble_gen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o
+.PHONY : source/simulator_bubble_gen.cpp.o
 
-source/simulator_decoding.i: source/simulator_decoding.cpp.i
-.PHONY : source/simulator_decoding.i
+source/simulator_bubble_gen.i: source/simulator_bubble_gen.cpp.i
+.PHONY : source/simulator_bubble_gen.i
 
 # target to preprocess a source file
-source/simulator_decoding.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_decoding.cpp.i
-.PHONY : source/simulator_decoding.cpp.i
+source/simulator_bubble_gen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.i
+.PHONY : source/simulator_bubble_gen.cpp.i
 
-source/simulator_decoding.s: source/simulator_decoding.cpp.s
-.PHONY : source/simulator_decoding.s
+source/simulator_bubble_gen.s: source/simulator_bubble_gen.cpp.s
+.PHONY : source/simulator_bubble_gen.s
 
 # target to generate assembly for a file
-source/simulator_decoding.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_decoding.cpp.s
-.PHONY : source/simulator_decoding.cpp.s
+source/simulator_bubble_gen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Simul.dir/build.make CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.s
+.PHONY : source/simulator_bubble_gen.cpp.s
 
 source/tools.o: source/tools.cpp.o
 .PHONY : source/tools.o
@@ -294,9 +294,9 @@ help:
 	@echo "... source/init.o"
 	@echo "... source/init.i"
 	@echo "... source/init.s"
-	@echo "... source/simulator_decoding.o"
-	@echo "... source/simulator_decoding.i"
-	@echo "... source/simulator_decoding.s"
+	@echo "... source/simulator_bubble_gen.o"
+	@echo "... source/simulator_bubble_gen.i"
+	@echo "... source/simulator_bubble_gen.s"
 	@echo "... source/tools.o"
 	@echo "... source/tools.i"
 	@echo "... source/tools.s"

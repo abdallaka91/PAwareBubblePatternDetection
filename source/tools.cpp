@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <random>
 #include <vector>
+#include <random>
 // #include "debugging_tools.h"
 
 using std::vector;
@@ -114,6 +115,19 @@ void PoAwN::tools::Encoder(const vector<vector<uint16_t>> &ADDDEC, const vector<
     }
     for (uint16_t i = 0; i < N; ++i)
         NSYMB[i] = temp_symb[i][n];
+}
+float PoAwN::tools::My_drand48(int *initialise)
+{
+    static thread_local std::mt19937 generator(std::random_device{}());
+    static thread_local std::uniform_real_distribution<float> distribution(0.0f, 1.0f);
+
+    if (*initialise == -1)
+    {
+        generator.seed(std::random_device{}());
+        *initialise = 0;
+    }
+
+    return distribution(generator);
 }
 
 // void PoAwN::tools::inv_Encoder(const vector<vector<uint16_t>> &ADDDEC, const vector<vector<uint16_t>> &DIVDEC,

@@ -12,7 +12,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/GF_tools.cpp" "CMakeFiles/Simul.dir/source/GF_tools.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/GF_tools.cpp.o.d"
   "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/channel.cpp" "CMakeFiles/Simul.dir/source/channel.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/channel.cpp.o.d"
   "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/init.cpp" "CMakeFiles/Simul.dir/source/init.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/init.cpp.o.d"
-  "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_decoding.cpp" "CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o.d"
+  "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_bubble_gen.cpp" "CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o.d"
   "/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/tools.cpp" "CMakeFiles/Simul.dir/source/tools.cpp.o" "gcc" "CMakeFiles/Simul.dir/source/tools.cpp.o.d"
   )
 

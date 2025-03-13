@@ -23,8 +23,8 @@ endif()
 
 
 add_executable(Simul
-     ${SOURCE_DIR}/simulator_decoding.cpp
-    # ${SOURCE_DIR}/simulator_bubble_gen.cpp
+    # ${SOURCE_DIR}/simulator_decoding.cpp
+    ${SOURCE_DIR}/simulator_bubble_gen.cpp
     ${SOURCE_DIR}/GF_tools.cpp
     ${SOURCE_DIR}/init.cpp
     ${SOURCE_DIR}/tools.cpp

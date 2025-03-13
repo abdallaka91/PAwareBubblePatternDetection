@@ -9,6 +9,7 @@
 #include "struct.h"
 #include "tools.h"
 #include "channel.h"
+#include "HelperFunc.h"
 #define PI 3.14159265358979323846
 
 using namespace PoAwN::structures;
@@ -32,7 +33,7 @@ void PoAwN::channel::EncodeChanBPSK_BinCCSK(const decoder_parameters &dec_param,
 {
     uint16_t N = dec_param.N, K = dec_param.K, q = dec_param.q;
     uint16_t nm = dec_param.nm;
-    float sigma = sqrt(1.0 / (pow(10, SNR / 10.0)));// N0/2 or N0?
+    float sigma = sqrt(1.0 / 2*(pow(10, SNR / 10.0)));// N0/2 or N0?
     vector<uint16_t> NSYMB(N);
     vector<vector<uint16_t>> KBIN(K), NBIN;
     NBIN.resize(N, vector<uint16_t>());
@@ -82,6 +83,8 @@ void PoAwN::channel::EncodeChanGF_CCSK(const decoder_parameters &dec_param,
     vector<vector<vector<softdata_t>>> rnd_noise(N, vector<vector<softdata_t>>(csk_sz, vector<softdata_t>(2)));
     vector<vector<softdata_t>> noisy_sym(csk_sz, vector<softdata_t>(2));
     vector<vector<softdata_t>> chan_LLR(N, vector<softdata_t>(q, 0));
+    vector<vector<softdata_t>> chan_LLR_debug(N, vector<softdata_t>(q, 0));
+    vector<uint16_t> KSYMB_debug=vector<uint16_t>(dec_param.K, 0);
 
     softdata_t min1;
     for (int n = 0; n < N; n++)
@@ -109,8 +112,20 @@ void PoAwN::channel::EncodeChanGF_CCSK(const decoder_parameters &dec_param,
                 min1 = chan_LLR[n][k];
         }
         for (int k = 0; k < q; k++)
+        {
             chan_LLR[n][k] -= min1;
+            chan_LLR_debug[n][table.GFDEC[k]] = chan_LLR[n][k];
+        }
+        
+            
 
         LLR_sort(chan_LLR, nm, chan_LLR_sorted);
     }
+
+    for(int u=0; u<dec_param.K;u++)
+    {
+        KSYMB_debug[u]=table.GFDEC[KSYMB[u]];
+    }
+    save_intrinsic_LLR(chan_LLR_debug, "LLR_to_test.txt");
+    appendSequenceToFile( "SEQ_to_test.txt", KSYMB_debug);
 }

@@ -69,19 +69,19 @@ include CMakeFiles/Simul.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Simul.dir/flags.make
 
-CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: CMakeFiles/Simul.dir/flags.make
-CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_decoding.cpp
-CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: CMakeFiles/Simul.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o -MF CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o.d -o CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o -c /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_decoding.cpp
+CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o: CMakeFiles/Simul.dir/flags.make
+CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_bubble_gen.cpp
+CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o: CMakeFiles/Simul.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o -MF CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o.d -o CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o -c /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_bubble_gen.cpp
 
-CMakeFiles/Simul.dir/source/simulator_decoding.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simul.dir/source/simulator_decoding.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_decoding.cpp > CMakeFiles/Simul.dir/source/simulator_decoding.cpp.i
+CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_bubble_gen.cpp > CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.i
 
-CMakeFiles/Simul.dir/source/simulator_decoding.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simul.dir/source/simulator_decoding.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_decoding.cpp -o CMakeFiles/Simul.dir/source/simulator_decoding.cpp.s
+CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_bubble_gen.cpp -o CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.s
 
 CMakeFiles/Simul.dir/source/GF_tools.cpp.o: CMakeFiles/Simul.dir/flags.make
 CMakeFiles/Simul.dir/source/GF_tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/GF_tools.cpp
@@ -155,7 +155,7 @@ CMakeFiles/Simul.dir/source/channel.cpp.s: cmake_force
 
 # Object files for target Simul
 Simul_OBJECTS = \
-"CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o" \
+"CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o" \
 "CMakeFiles/Simul.dir/source/GF_tools.cpp.o" \
 "CMakeFiles/Simul.dir/source/init.cpp.o" \
 "CMakeFiles/Simul.dir/source/tools.cpp.o" \
@@ -165,7 +165,7 @@ Simul_OBJECTS = \
 # External object files for target Simul
 Simul_EXTERNAL_OBJECTS =
 
-Simul: CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o
+Simul: CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o
 Simul: CMakeFiles/Simul.dir/source/GF_tools.cpp.o
 Simul: CMakeFiles/Simul.dir/source/init.cpp.o
 Simul: CMakeFiles/Simul.dir/source/tools.cpp.o

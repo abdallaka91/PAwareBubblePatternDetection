@@ -152,20 +152,13 @@ CMakeFiles/Simul.dir/source/Decoder_functions.cpp.o: /home/abdallah_ubuntu/Deskt
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
-  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -203,8 +196,6 @@ CMakeFiles/Simul.dir/source/Decoder_functions.cpp.o: /home/abdallah_ubuntu/Deskt
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
@@ -321,15 +312,11 @@ CMakeFiles/Simul.dir/source/GF_tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPola
   /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
-  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
-  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -367,6 +354,7 @@ CMakeFiles/Simul.dir/source/GF_tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPola
 CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/channel.cpp \
   /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/Decoder_functions.h \
   /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/GF_tools.h \
+  /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/HelperFunc.h \
   /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/channel.h \
   /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/init.h \
   /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/struct.h \
@@ -378,6 +366,7 @@ CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar
   /usr/include/c++/13/backward/binders.h \
   /usr/include/c++/13/bit \
   /usr/include/c++/13/bits/alloc_traits.h \
+  /usr/include/c++/13/bits/allocated_ptr.h \
   /usr/include/c++/13/bits/allocator.h \
   /usr/include/c++/13/bits/basic_ios.h \
   /usr/include/c++/13/bits/basic_ios.tcc \
@@ -385,6 +374,8 @@ CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar
   /usr/include/c++/13/bits/basic_string.tcc \
   /usr/include/c++/13/bits/char_traits.h \
   /usr/include/c++/13/bits/charconv.h \
+  /usr/include/c++/13/bits/chrono.h \
+  /usr/include/c++/13/bits/codecvt.h \
   /usr/include/c++/13/bits/concept_check.h \
   /usr/include/c++/13/bits/cpp_type_traits.h \
   /usr/include/c++/13/bits/cxxabi_forced.h \
@@ -392,6 +383,11 @@ CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar
   /usr/include/c++/13/bits/exception.h \
   /usr/include/c++/13/bits/exception_defines.h \
   /usr/include/c++/13/bits/exception_ptr.h \
+  /usr/include/c++/13/bits/fs_dir.h \
+  /usr/include/c++/13/bits/fs_fwd.h \
+  /usr/include/c++/13/bits/fs_ops.h \
+  /usr/include/c++/13/bits/fs_path.h \
+  /usr/include/c++/13/bits/fstream.tcc \
   /usr/include/c++/13/bits/functexcept.h \
   /usr/include/c++/13/bits/functional_hash.h \
   /usr/include/c++/13/bits/hash_bytes.h \
@@ -400,8 +396,11 @@ CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar
   /usr/include/c++/13/bits/istream.tcc \
   /usr/include/c++/13/bits/locale_classes.h \
   /usr/include/c++/13/bits/locale_classes.tcc \
+  /usr/include/c++/13/bits/locale_conv.h \
   /usr/include/c++/13/bits/locale_facets.h \
   /usr/include/c++/13/bits/locale_facets.tcc \
+  /usr/include/c++/13/bits/locale_facets_nonio.h \
+  /usr/include/c++/13/bits/locale_facets_nonio.tcc \
   /usr/include/c++/13/bits/localefwd.h \
   /usr/include/c++/13/bits/memory_resource.h \
   /usr/include/c++/13/bits/memoryfwd.h \
@@ -410,13 +409,18 @@ CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar
   /usr/include/c++/13/bits/new_allocator.h \
   /usr/include/c++/13/bits/ostream.tcc \
   /usr/include/c++/13/bits/ostream_insert.h \
+  /usr/include/c++/13/bits/parse_numbers.h \
   /usr/include/c++/13/bits/postypes.h \
   /usr/include/c++/13/bits/predefined_ops.h \
   /usr/include/c++/13/bits/ptr_traits.h \
+  /usr/include/c++/13/bits/quoted_string.h \
   /usr/include/c++/13/bits/range_access.h \
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
+  /usr/include/c++/13/bits/shared_ptr.h \
+  /usr/include/c++/13/bits/shared_ptr_base.h \
   /usr/include/c++/13/bits/specfun.h \
+  /usr/include/c++/13/bits/sstream.tcc \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_bvector.h \
@@ -432,6 +436,7 @@ CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar
   /usr/include/c++/13/bits/streambuf_iterator.h \
   /usr/include/c++/13/bits/string_view.tcc \
   /usr/include/c++/13/bits/stringfwd.h \
+  /usr/include/c++/13/bits/unique_ptr.h \
   /usr/include/c++/13/bits/uses_allocator.h \
   /usr/include/c++/13/bits/uses_allocator_args.h \
   /usr/include/c++/13/bits/utility.h \
@@ -440,30 +445,40 @@ CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar
   /usr/include/c++/13/cerrno \
   /usr/include/c++/13/clocale \
   /usr/include/c++/13/cmath \
+  /usr/include/c++/13/codecvt \
   /usr/include/c++/13/compare \
   /usr/include/c++/13/cstddef \
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
   /usr/include/c++/13/cstdlib \
+  /usr/include/c++/13/ctime \
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/cwctype \
   /usr/include/c++/13/debug/assertions.h \
   /usr/include/c++/13/debug/debug.h \
   /usr/include/c++/13/exception \
+  /usr/include/c++/13/ext/aligned_buffer.h \
   /usr/include/c++/13/ext/alloc_traits.h \
   /usr/include/c++/13/ext/atomicity.h \
+  /usr/include/c++/13/ext/concurrence.h \
   /usr/include/c++/13/ext/numeric_traits.h \
   /usr/include/c++/13/ext/string_conversions.h \
   /usr/include/c++/13/ext/type_traits.h \
+  /usr/include/c++/13/filesystem \
+  /usr/include/c++/13/fstream \
   /usr/include/c++/13/initializer_list \
+  /usr/include/c++/13/iomanip \
   /usr/include/c++/13/ios \
   /usr/include/c++/13/iosfwd \
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
   /usr/include/c++/13/limits \
+  /usr/include/c++/13/locale \
   /usr/include/c++/13/new \
   /usr/include/c++/13/ostream \
   /usr/include/c++/13/pstl/pstl_config.h \
+  /usr/include/c++/13/ratio \
+  /usr/include/c++/13/sstream \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/streambuf \
   /usr/include/c++/13/string \
@@ -490,6 +505,7 @@ CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar
   /usr/include/errno.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
+  /usr/include/libintl.h \
   /usr/include/linux/errno.h \
   /usr/include/locale.h \
   /usr/include/math.h \
@@ -527,20 +543,13 @@ CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
-  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -578,13 +587,13 @@ CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h \
@@ -592,7 +601,9 @@ CMakeFiles/Simul.dir/source/channel.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar
   /usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -755,22 +766,13 @@ CMakeFiles/Simul.dir/source/init.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_de
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
-  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
-  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
-  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -808,8 +810,6 @@ CMakeFiles/Simul.dir/source/init.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_de
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
@@ -837,9 +837,10 @@ CMakeFiles/Simul.dir/source/init.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_de
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h
 
-CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_decoding.cpp \
+CMakeFiles/Simul.dir/source/simulator_bubble_gen.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_bubble_gen.cpp \
   /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/Decoder_functions.h \
   /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/GF_tools.h \
+  /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/HelperFunc.h \
   /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/channel.h \
   /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/init.h \
   /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/struct.h \
@@ -853,6 +854,7 @@ CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desk
   /usr/include/c++/13/bit \
   /usr/include/c++/13/bits/algorithmfwd.h \
   /usr/include/c++/13/bits/alloc_traits.h \
+  /usr/include/c++/13/bits/allocated_ptr.h \
   /usr/include/c++/13/bits/allocator.h \
   /usr/include/c++/13/bits/basic_ios.h \
   /usr/include/c++/13/bits/basic_ios.tcc \
@@ -860,6 +862,7 @@ CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desk
   /usr/include/c++/13/bits/basic_string.tcc \
   /usr/include/c++/13/bits/char_traits.h \
   /usr/include/c++/13/bits/charconv.h \
+  /usr/include/c++/13/bits/chrono.h \
   /usr/include/c++/13/bits/codecvt.h \
   /usr/include/c++/13/bits/concept_check.h \
   /usr/include/c++/13/bits/cpp_type_traits.h \
@@ -868,6 +871,11 @@ CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desk
   /usr/include/c++/13/bits/exception.h \
   /usr/include/c++/13/bits/exception_defines.h \
   /usr/include/c++/13/bits/exception_ptr.h \
+  /usr/include/c++/13/bits/fs_dir.h \
+  /usr/include/c++/13/bits/fs_fwd.h \
+  /usr/include/c++/13/bits/fs_ops.h \
+  /usr/include/c++/13/bits/fs_path.h \
+  /usr/include/c++/13/bits/fstream.tcc \
   /usr/include/c++/13/bits/functexcept.h \
   /usr/include/c++/13/bits/functional_hash.h \
   /usr/include/c++/13/bits/hash_bytes.h \
@@ -889,6 +897,7 @@ CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desk
   /usr/include/c++/13/bits/new_allocator.h \
   /usr/include/c++/13/bits/ostream.tcc \
   /usr/include/c++/13/bits/ostream_insert.h \
+  /usr/include/c++/13/bits/parse_numbers.h \
   /usr/include/c++/13/bits/postypes.h \
   /usr/include/c++/13/bits/predefined_ops.h \
   /usr/include/c++/13/bits/ptr_traits.h \
@@ -896,6 +905,8 @@ CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desk
   /usr/include/c++/13/bits/range_access.h \
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
+  /usr/include/c++/13/bits/shared_ptr.h \
+  /usr/include/c++/13/bits/shared_ptr_base.h \
   /usr/include/c++/13/bits/specfun.h \
   /usr/include/c++/13/bits/sstream.tcc \
   /usr/include/c++/13/bits/std_abs.h \
@@ -917,6 +928,7 @@ CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desk
   /usr/include/c++/13/bits/string_view.tcc \
   /usr/include/c++/13/bits/stringfwd.h \
   /usr/include/c++/13/bits/uniform_int_dist.h \
+  /usr/include/c++/13/bits/unique_ptr.h \
   /usr/include/c++/13/bits/uses_allocator.h \
   /usr/include/c++/13/bits/uses_allocator_args.h \
   /usr/include/c++/13/bits/utility.h \
@@ -925,22 +937,28 @@ CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desk
   /usr/include/c++/13/cerrno \
   /usr/include/c++/13/clocale \
   /usr/include/c++/13/cmath \
+  /usr/include/c++/13/codecvt \
   /usr/include/c++/13/compare \
   /usr/include/c++/13/cstddef \
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
   /usr/include/c++/13/cstdlib \
+  /usr/include/c++/13/cstring \
   /usr/include/c++/13/ctime \
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/cwctype \
   /usr/include/c++/13/debug/assertions.h \
   /usr/include/c++/13/debug/debug.h \
   /usr/include/c++/13/exception \
+  /usr/include/c++/13/ext/aligned_buffer.h \
   /usr/include/c++/13/ext/alloc_traits.h \
   /usr/include/c++/13/ext/atomicity.h \
+  /usr/include/c++/13/ext/concurrence.h \
   /usr/include/c++/13/ext/numeric_traits.h \
   /usr/include/c++/13/ext/string_conversions.h \
   /usr/include/c++/13/ext/type_traits.h \
+  /usr/include/c++/13/filesystem \
+  /usr/include/c++/13/fstream \
   /usr/include/c++/13/initializer_list \
   /usr/include/c++/13/iomanip \
   /usr/include/c++/13/ios \
@@ -954,6 +972,7 @@ CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desk
   /usr/include/c++/13/pstl/execution_defs.h \
   /usr/include/c++/13/pstl/glue_algorithm_defs.h \
   /usr/include/c++/13/pstl/pstl_config.h \
+  /usr/include/c++/13/ratio \
   /usr/include/c++/13/sstream \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/streambuf \
@@ -991,6 +1010,8 @@ CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desk
   /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/time.h \
   /usr/include/wchar.h \
   /usr/include/wctype.h \
@@ -1019,20 +1040,13 @@ CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desk
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
-  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -1070,13 +1084,13 @@ CMakeFiles/Simul.dir/source/simulator_decoding.cpp.o: /home/abdallah_ubuntu/Desk
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h \
@@ -1186,7 +1200,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
   /usr/include/c++/13/pstl/glue_numeric_defs.h \
   /usr/include/c++/13/pstl/pstl_config.h \
   /usr/include/c++/13/random \
-  /usr/include/c++/13/stdlib.h \
   /usr/include/c++/13/string \
   /usr/include/c++/13/string_view \
   /usr/include/c++/13/tr1/bessel_function.tcc \
@@ -1239,19 +1252,12 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
   /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
-  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
-  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
-  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -1283,8 +1289,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -1297,24 +1301,10 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
   /usr/include/x86_64-linux-gnu/sys/cdefs.h \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
-  /usr/lib/gcc/x86_64-linux-gnu/13/include/emmintrin.h \
-  /usr/lib/gcc/x86_64-linux-gnu/13/include/mm_malloc.h \
-  /usr/lib/gcc/x86_64-linux-gnu/13/include/mmintrin.h \
-  /usr/lib/gcc/x86_64-linux-gnu/13/include/mwaitintrin.h \
-  /usr/lib/gcc/x86_64-linux-gnu/13/include/pmmintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
-  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h \
-  /usr/lib/gcc/x86_64-linux-gnu/13/include/xmmintrin.h
+  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h
 
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/pmmintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/mwaitintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/mm_malloc.h:
-
-/usr/include/c++/13/stdlib.h:
 
 /usr/include/c++/13/random:
 
@@ -1322,19 +1312,21 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/c++/13/bits/random.h:
 
+/usr/include/string.h:
+
+/usr/include/c++/13/cstring:
+
+/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/init.cpp:
+
 /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h:
 
-/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
-
-/usr/include/x86_64-linux-gnu/bits/string_fortified.h:
-
-/usr/include/string.h:
-
 /usr/include/libintl.h:
+
+/usr/include/c++/13/ratio:
 
 /usr/include/c++/13/locale:
 
@@ -1342,23 +1334,27 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/c++/13/iomanip:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/xmmintrin.h:
-
 /usr/include/c++/13/fstream:
+
+/usr/include/c++/13/filesystem:
+
+/usr/include/c++/13/ext/concurrence.h:
+
+/usr/include/c++/13/ext/aligned_buffer.h:
 
 /usr/include/c++/13/ctime:
 
-/usr/include/c++/13/cstring:
+/usr/include/c++/13/codecvt:
 
 /usr/include/c++/13/bits/sstream.tcc:
+
+/usr/include/c++/13/bits/shared_ptr.h:
+
+/usr/include/c++/13/bits/quoted_string.h:
 
 /usr/include/c++/13/bits/locale_facets_nonio.tcc:
 
 /usr/include/c++/13/bits/locale_facets_nonio.h:
-
-/usr/include/c++/13/bits/fstream.tcc:
-
-/usr/include/c++/13/bits/codecvt.h:
 
 /usr/include/pthread.h:
 
@@ -1378,8 +1374,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/c++/13/bits/basic_ios.tcc:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/emmintrin.h:
-
 /usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/opt_random.h:
@@ -1389,8 +1383,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 /usr/include/c++/13/tr1/riemann_zeta.tcc:
 
 /usr/include/features-time64.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar2-decl.h:
 
 /usr/include/c++/13/ext/string_conversions.h:
 
@@ -1408,13 +1400,13 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/c++/13/debug/assertions.h:
 
-/usr/include/x86_64-linux-gnu/bits/select-decl.h:
-
 /usr/include/c++/13/cstdio:
 
 /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/include/c++/13/bits/fs_path.h:
 
 /usr/include/c++/13/vector:
 
@@ -1427,6 +1419,8 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 /usr/include/c++/13/cerrno:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-least.h:
+
+/usr/include/c++/13/bits/unique_ptr.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
@@ -1453,6 +1447,8 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 /usr/include/c++/13/bits/uses_allocator.h:
 
 /usr/include/c++/13/bits/postypes.h:
+
+/usr/include/c++/13/bits/parse_numbers.h:
 
 /usr/include/c++/13/bits/std_abs.h:
 
@@ -1496,6 +1492,8 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/c++/13/bits/algorithmfwd.h:
 
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
 /usr/include/c++/13/ext/alloc_traits.h:
 
 /usr/include/c++/13/new:
@@ -1505,10 +1503,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 /usr/include/c++/13/bits/concept_check.h:
 
 /usr/include/c++/13/bits/exception_ptr.h:
-
-/usr/include/c++/13/bits/locale_conv.h:
-
-/usr/include/c++/13/bits/istream.tcc:
 
 /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/struct.h:
 
@@ -1544,8 +1538,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/c++/13/bits/basic_string.h:
 
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-
 /usr/include/c++/13/tr1/poly_laguerre.tcc:
 
 /usr/include/c++/13/backward/binders.h:
@@ -1555,6 +1547,8 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 /usr/include/c++/13/bits/range_access.h:
 
 /usr/include/c++/13/tr1/hypergeometric.tcc:
+
+/usr/include/c++/13/bits/allocated_ptr.h:
 
 /usr/include/c++/13/bit:
 
@@ -1569,8 +1563,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 /usr/include/c++/13/istream:
 
 /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/Decoder_functions.cpp:
-
-/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_decoding.cpp:
 
 /usr/include/c++/13/bits/stl_queue.h:
 
@@ -1588,13 +1580,13 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/alloca.h:
 
+/usr/include/c++/13/bits/ptr_traits.h:
+
 /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h:
 
 /usr/include/c++/13/pstl/glue_numeric_defs.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/mmintrin.h:
 
 /usr/include/c++/13/algorithm:
 
@@ -1618,8 +1610,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/c++/13/bits/nested_exception.h:
 
-/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/init.cpp:
-
 /usr/include/c++/13/bits/basic_ios.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
@@ -1632,9 +1622,13 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
+/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/simulator_bubble_gen.cpp:
+
 /usr/include/ctype.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
+
+/usr/include/c++/13/bits/fs_ops.h:
 
 /usr/include/c++/13/bits/allocator.h:
 
@@ -1656,15 +1650,21 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/c++/13/bits/memory_resource.h:
 
+/usr/include/c++/13/bits/shared_ptr_base.h:
+
 /usr/include/wchar.h:
 
 /usr/include/c++/13/bits/memoryfwd.h:
+
+/usr/include/c++/13/bits/fs_fwd.h:
 
 /usr/include/c++/13/bits/ostream_insert.h:
 
 /usr/include/features.h:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/HelperFunc.h:
 
 /usr/include/c++/13/bits/string_view.tcc:
 
@@ -1700,8 +1700,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdlib.h:
-
 /usr/include/c++/13/ext/numeric_traits.h:
 
 /usr/include/c++/13/bits/stl_iterator.h:
@@ -1736,21 +1734,7 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdio.h:
-
-/usr/include/c++/13/bits/ptr_traits.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio2-decl.h:
-
-/usr/include/c++/13/bits/quoted_string.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio2.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
-
-/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/channel.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
@@ -1786,8 +1770,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
 /usr/include/c++/13/sstream:
@@ -1820,10 +1802,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /usr/include/c++/13/tr1/modified_bessel_func.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:
-
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h:
@@ -1835,8 +1813,6 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h:
-
-/usr/include/x86_64-linux-gnu/bits/select2.h:
 
 /usr/include/c++/13/cmath:
 
@@ -1890,4 +1866,22 @@ CMakeFiles/Simul.dir/source/tools.cpp.o: /home/abdallah_ubuntu/Desktop/NBPolar_d
 
 /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/source/channel.cpp:
 
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/channel.h:
+
 /home/abdallah_ubuntu/Desktop/NBPolar_decoder/PolarizationAware_NBPC/include/init.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/include/c++/13/bits/chrono.h:
+
+/usr/include/c++/13/bits/codecvt.h:
+
+/usr/include/c++/13/bits/fs_dir.h:
+
+/usr/include/c++/13/bits/fstream.tcc:
+
+/usr/include/c++/13/bits/istream.tcc:
+
+/usr/include/c++/13/bits/locale_conv.h:

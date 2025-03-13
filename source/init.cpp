@@ -159,8 +159,8 @@ void PoAwN::init::LoadTables(PoAwN::structures::base_code_t &code,
 {
     uint16_t prim_pol = GF_polynom_primitive[code.p - 2];
     PoAwN::GFtools::GF_bin_seq_gen(code.q, prim_pol, table.BINGF, table.BINDEC);
-    PoAwN::GFtools::GF_bin2GF(table.BINGF, table.GFDEC, table.DECGF);
-    PoAwN::GFtools::GF_add_mat_gen(table.DECGF, table.ADDGF, table.ADDDEC);
-    PoAwN::GFtools::GF_mul_mat_gen(table.GFDEC, table.MULGF, table.MULDEC);
-    PoAwN::GFtools::GF_div_mat_gen(table.GFDEC, table.DIVGF, table.DIVDEC);
+    PoAwN::GFtools::GF_bin2GF(table.BINGF, table.DECGF, table.GFDEC); //x^-inf=GFDEC[0]=0, x^0=GFDEC[1]=1, , x^1=GFDEC[2]=2,.., , x^(q-2)=GFDEC[q-1] and GFDEC[DECGF[i]]=i
+    PoAwN::GFtools::GF_add_mat_gen(table.BINGF, table.DECGF,table.GFDEC, table.ADDGF, table.ADDDEC);
+    PoAwN::GFtools::GF_mul_mat_gen(table.DECGF, table.MULGF, table.MULDEC);
+    PoAwN::GFtools::GF_div_mat_gen(table.DECGF, table.DIVGF, table.DIVDEC);
 }

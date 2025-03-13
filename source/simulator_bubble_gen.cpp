@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
     vector<uint16_t> KSYMB(K);
     bool succ_dec, succ_writing, newsim;
     int succ_dec_frame = 0, i0 = 0;
-    while (succ_dec_frame < NbMonteCarlo)
+    while (i0 < NbMonteCarlo)
     {
         i0++;
         succ_dec = 1;
@@ -159,6 +159,9 @@ int main(int argc, char *argv[])
             EncodeChanBPSK_BinCCSK(dec_param, table, EbN0, table.BINDEC, L[0], KSYMB);
 
         decode_SC_bubble_gen(dec_param, table.ADDDEC, table.MULDEC, table.DIVDEC, L, info_sec_rec, Bt);
+        
+
+        
 
         for (uint16_t i = 0; i < dec_param.K; i++)
         {
